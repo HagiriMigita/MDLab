@@ -27,5 +27,3 @@ while cap.isOpened():
 # 後処理
 cap.release()
 cv2.destroyAllWindows()
-
-#うんち

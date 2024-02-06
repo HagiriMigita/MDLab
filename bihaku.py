@@ -6,7 +6,7 @@ mp_face_detection = mp.solutions.face_detection
 face_detection = mp_face_detection.FaceDetection(min_detection_confidence=0.2)
 
 # カメラの初期化
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 
 while cap.isOpened():
     # フレームの読み込み
@@ -25,7 +25,7 @@ while cap.isOpened():
 
             # 顔領域にバイラテラルフィルタを適用
             face_roi = frame[y:y+h, x:x+w]
-            face_roi = cv2.bilateralFilter(face_roi, d=9, sigmaColor=50, sigmaSpace=50)
+            face_roi = cv2.bilateralFilter(face_roi, d=9, sigmaColor=100, sigmaSpace=100)
 
             # 元のフレームに処理後の顔領域を反映
             frame[y:y+h, x:x+w] = face_roi

@@ -4,7 +4,7 @@ import mediapipe as mp
 mp_face_mesh = mp.solutions.face_mesh
 face_mesh = mp_face_mesh.FaceMesh()
 # カメラからの映像をキャプチャ
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 while cap.isOpened():
     ret, frame = cap.read()
     if not ret:
@@ -27,5 +27,3 @@ while cap.isOpened():
 # 後処理
 cap.release()
 cv2.destroyAllWindows()
-
-#うんち

@@ -3,6 +3,7 @@ import mediapipe as mp
 from feat import Detector
 import matplotlib.pyplot as plt
 import os
+import tempfile
 
 detector = Detector()
 
@@ -26,16 +27,20 @@ with mp_face_mesh.FaceMesh(
     if not success:
       print("Ignoring empty camera frame.")
       continue
-    
+
     # 入力画像をRGB形式に変換
     image.flags.writeable = False
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    
+    # 画像を一時ファイルに保存
+    with tempfile.NamedTemporaryFile(suffix=".jpg", delete=False) as temp_image:
+        temp_image_path = temp_image.name
+        cv2.imwrite(temp_image_path, image)
 
     #入力画像をPy-Featに渡す
-    result = detector.detect_image(image)
-
+    result = detector.detect_image(temp_image_path)
     result.plot_detections()
-    plt.show()
+    # plt.show()　#コメントアウトを消すとpy-featの表情認識の結果が表示される
 
     # FaceMeshモデルに画像を入力し、顔のメッシュを検出
     results = face_mesh.process(image)

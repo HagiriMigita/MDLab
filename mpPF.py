@@ -31,11 +31,12 @@ with mp_face_mesh.FaceMesh(
     image.flags.writeable = False
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
-    #入力画像をPy-Featに渡す
-    result = detector.detect_image(image)
+    for i in range(1):
+      #入力画像をPy-Featに渡す
+      result = detector.detect_image(image)
 
-    result.plot_detections()
-    plt.show()
+      result.plot_detections()
+      plt.show()
 
     # FaceMeshモデルに画像を入力し、顔のメッシュを検出
     results = face_mesh.process(image)

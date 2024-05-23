@@ -1,19 +1,17 @@
 import cv2
 import mediapipe as mp
 from feat import Detector
+import matplotlib.pyplot as plt
+import os
 import tempfile
-
 detector = Detector()
-
 # MediaPipeの関連モジュールのインポート
 mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
 mp_face_mesh = mp.solutions.face_mesh
- 
-# Webカメラから入力
+# ウェブカメラからの入力
 drawing_spec = mp_drawing.DrawingSpec(thickness=1, circle_radius=1)
 cap = cv2.VideoCapture(0)
-
 # FaceMeshモデルを読み込む
 with mp_face_mesh.FaceMesh(
     max_num_faces=3,                         # 検出する最大の顔の数
@@ -23,26 +21,10 @@ with mp_face_mesh.FaceMesh(
   while cap.isOpened():
     success, image = cap.read()
     if not success:
-      print("Ignoring empty camera frame.")
+      print("カメラフレームが空です。")
       continue
-
-    # 入力画像をRGB形式に変換
-    image.flags.writeable = False
-    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    
-    # 画像を一時ファイルに保存
-    with tempfile.NamedTemporaryFile(suffix=".jpg", delete=False) as temp_image:
-        temp_image_path = temp_image.name
-        cv2.imwrite(temp_image_path, image)
-
-    #入力画像をPy-Featに渡す
-    result = detector.detect_image(temp_image_path)
-    result.plot_detections()
-     # plt.show()　#コメントアウトを消すとpy-featの表情認識の結果が表示される
-
     # FaceMeshモデルに画像を入力し、顔のメッシュを検出
-    results = face_mesh.process(image)
- 
+    results = face_mesh.process(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
     # 検出された顔のメッシュをカメラ画像の上に描画
     image.flags.writeable = True
     image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
@@ -72,13 +54,18 @@ with mp_face_mesh.FaceMesh(
             landmark_drawing_spec=None,
             connection_drawing_spec=mp_drawing_styles
             .get_default_face_mesh_iris_connections_style())
-    
+    # 入力画像を一時ファイルに保存し、そのパスをPy-Featに渡して表情を検出
+    with tempfile.NamedTemporaryFile(suffix=".jpg", delete=False) as temp_image:
+        temp_image_path = temp_image.name
+        cv2.imwrite(temp_image_path, cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+        result = detector.detect_image(temp_image_path)
+        result.plot_detections()
+        plt.show()
     # 画面に表示
     cv2.imshow('MediaPipe Face Mesh', cv2.flip(image, 1))
     # キー入力を待ち、ESCが押されたらループを抜ける
     if cv2.waitKey(5) & 0xFF == 27:
       break
-
 # リソースを解放
 cap.release()
 cv2.destroyAllWindows()

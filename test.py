@@ -40,7 +40,8 @@ with mp_face_mesh.FaceMesh(
     #入力画像をPy-Featに渡す
     result = detector.detect_image(temp_image_path)
     result.plot_detections()
-    plt.show() #コメントアウトを消すとpy-featの表情認識の結果が表示される
+    print(result.emotions)
+    ## plt.show() #コメントアウトを消すとpy-featの表情認識の結果が表示される
 
     # FaceMeshモデルに画像を入力し、顔のメッシュを検出
     results = face_mesh.process(image)

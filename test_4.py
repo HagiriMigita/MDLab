@@ -3,6 +3,9 @@ from feat import Detector
 import numpy as np
 import tempfile
 import time
+import matplotlib.pyplot as plt
+
+i = 20
 
 detector = Detector()
 
@@ -31,10 +34,16 @@ while cap.isOpened():
   with tempfile.NamedTemporaryFile(suffix=".jpg", delete=False) as temp_image:
       temp_image_path = temp_image.name
       cv2.imwrite(temp_image_path, image)
-  # 入力画像をPy-Featに渡す
-  result = detector.detect_image(temp_image_path)
-  emotions = result.emotions.iloc[0]
-  print(emotions)
+  if i == 20:
+    # 入力画像をPy-Featに渡す
+    result = detector.detect_image(temp_image_path)
+    emotions = result.emotions.iloc[0]
+    print(emotions)
+    result.plot_detections()
+    plt.show()
+    i = 0
+
+  i += 1
 
    # 表情が幸福感であればエフェクトを描画
   if 'happiness' in emotions and emotions['happiness'] > 0.5:  # 0.5は幸福感の閾値

@@ -51,9 +51,11 @@ while cap.isOpened():
 
   i += 1
 
-   # 表情が幸福感であればエフェクトを描画
+  # 表情が幸福感であればエフェクトを描画
   if 'happiness' in emotions and emotions['happiness'] > 0.5:  # 0.5は幸福感の閾値
-      draw_fireworks(image)
+    draw_fireworks(image)
+  if 'surprise' in emotions and emotions['surprise'] > 0.5:
+     display_surprise(image)
 
   image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
@@ -67,8 +69,9 @@ while cap.isOpened():
   print('{:.2f}'.format((end-start)/60)) # 87.97(秒→分に直し、小数点以下の桁数を指定して出力)
 
   # キー入力を待ち
-  if cv2.waitKey(1) & 0xFF == 27:
-     break
+  k = cv2.waitKey(1)
+  if k == 27:
+    break
 
 # リソースを解放
 cap.release()

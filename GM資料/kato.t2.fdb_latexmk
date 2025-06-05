@@ -1,9 +1,9 @@
 # Fdb version 3
-["dvipdf"] 1748848482 "kato.t2.dvi" "kato.t2.pdf" "kato.t2" 1748848483
-  "kato.t2.dvi" 1748848482 10328 35fc1b0fa02a15e76cd49554eb6a70e9 "latex"
+["dvipdf"] 1749150130 "kato.t2.dvi" "kato.t2.pdf" "kato.t2" 1749150131
+  "kato.t2.dvi" 1749150130 10712 fdf07ac0b67a6df930a56fa9234556b5 "latex"
   (generated)
   "kato.t2.pdf"
-["latex"] 1748848480 "kato.t2.tex" "kato.t2.dvi" "kato.t2" 1748848483
+["latex"] 1749150129 "kato.t2.tex" "kato.t2.dvi" "kato.t2" 1749150131
   "c:/texlive/2019/texmf-dist/fonts/map/fontname/texfonts.map" 1557392318 3332 103109f5612ad95229751940c61aada0 ""
   "c:/texlive/2019/texmf-dist/fonts/tfm/ptex-fonts/standard/goth10.tfm" 1557393163 1196 5981e79c37b2cfd27b3612a6783cd4b6 ""
   "c:/texlive/2019/texmf-dist/fonts/tfm/ptex-fonts/standard/min10.tfm" 1557393163 1196 1be730212205a270378fba11a44765dc ""
@@ -16,6 +16,7 @@
   "c:/texlive/2019/texmf-dist/tex/generic/oberdiek/ifpdf.sty" 1557392930 1300 96620a7d94bc0ceb261d968770ce8315 ""
   "c:/texlive/2019/texmf-dist/tex/generic/oberdiek/ifvtex.sty" 1557392930 6797 90b7f83b0ad46826bc16058b1e3d48df ""
   "c:/texlive/2019/texmf-dist/tex/latex/base/omscmr.fd" 1557392588 2472 aa08940f0a4dc6c24ae9f943b04ae0b9 ""
+  "c:/texlive/2019/texmf-dist/tex/latex/booktabs/booktabs.sty" 1557391846 5869 94335281ffcab47f341cf07ea8220e30 ""
   "c:/texlive/2019/texmf-dist/tex/latex/caption/caption.sty" 1557391875 68576 86bbc6bd5a409b3c353fccc1a815fa5b ""
   "c:/texlive/2019/texmf-dist/tex/latex/caption/caption3.sty" 1557391875 68510 943558eecf41da4e76fc614fd7f5deff ""
   "c:/texlive/2019/texmf-dist/tex/latex/float/float.sty" 1557392305 6749 16d2656a1984957e674b149555f1ea1d ""
@@ -35,10 +36,9 @@
   "fig/FIR.png" 1745306988 26958 c54a579041573a4a5277d6ce52993e00 ""
   "fig/RGB.png" 1745306969 39964 18dda071f71fe4c5a93918e3ebb924ea ""
   "fig/domain_adaptation.png" 1744970788 120831 451ef60950922813df729a75b4e4f5b2 ""
-  "fig/ã^éóÉâÉxÉãê∂ê¨ÇÃó¨ÇÍ.png" 1745240410 140544 2e044eada2c17e0f714c273ef2767851 ""
-  "kato.t2.aux" 1748848482 2073 f16660cba4d329af040672b31e6da1fe "latex"
-  "kato.t2.tex" 1748848478 7249 602f2481e3b68d215101e645522f9d6b ""
+  "kato.t2.aux" 1749150130 1750 333c17e048ffd8faff6a734a0ba06d51 "latex"
+  "kato.t2.tex" 1749150127 8053 ffe74401fdc7e3b02f2f9e7def8051bf ""
   (generated)
   "kato.t2.aux"
-  "kato.t2.log"
   "kato.t2.dvi"
+  "kato.t2.log"

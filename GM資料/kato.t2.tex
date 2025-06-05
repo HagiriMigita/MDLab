@@ -4,6 +4,7 @@
 \usepackage[dvipdfmx]{graphicx}
 \usepackage{subfig}
 \usepackage{float}
+\usepackage{booktabs}
 
 \begin{document}
 
@@ -54,13 +55,6 @@
 			\item FIR画像と疑似ラベルを用いて、可視光モデルをファインチューニングし、FIR画像専用の物体検出モデルを構築する。
 		\end{enumerate}
 	\end{itemize}
-	\begin{figure}[H]
-		\centering%
-		\includegraphics[height=6cm]{fig/疑似ラベル生成の流れ.png}
-		\hspace{1cm}%
-		\caption{疑似ラベル作成までの流れ}
-		\label{fig:Research summary}%
-	\end{figure}
 	\begin{itemize}
 		\item 損失関数のカスタマイズを行った。採用した損失関数はFocalLossとL1Loss。
 		\item クラス分類とオブジェクト性にFocalLoss、バウンディングボックス回帰にSmoothL1Lossを使用した。
@@ -77,8 +71,11 @@
 			car    & 0.163 & 0.490 & 0.055 & 0.039 & 0.322 & 0.644 \\
 			\hline
 		\end{tabular}
-		\caption{各カテゴリの検出精度（mAP）}
+		\caption{各カテゴリの検出精度（例）}
 	\end{table}
+	\begin{itemize}
+		\item mAPは閾値0.50~0.95における検出精度の平均値である。
+	\end{itemize}
 	\section{前回のGMからの進捗}
 	\subsection{損失関数の実装について}
 	\begin{itemize}
@@ -86,53 +83,51 @@
 		\item bboxにはIoULoss、クラス分類とオブジェクト性にCrossEntropyLossが使用されていた。
 		\item この2つとも、Yoloxに最初から実装されている損失関数であったため、デフォルトの損失関数から他のカスタマイズされた損失関数に変更することによってどのように検出精度が向上するかを考えるべきであると思った。
 	\end{itemize}
-	\subsection{アノテーションファイルの改善検討}
+	\subsection{谷本先輩の修士論文時点での検出精度と現時点での検出精度の比較}
 	\begin{table}[htbp]
-		\centering
-		\begin{tabular}{|l|l|}
+	\centering
+	\caption{谷本先輩の検出精度（$\theta_{\mathrm{det}}=0.50$）}
+		\begin{tabular}{lcccccc}
 			\hline
-			\textbf{項目} & \textbf{値} \\
+			\textbf{category} & \textbf{mAP} & \textbf{mAP\_50} & \textbf{mAP\_75} & \textbf{mAP\_s} & \textbf{mAP\_m} & \textbf{mAP\_l} \\
 			\hline
-			base\_lr & $1.0000 \times 10^{-2}$ \\
-			lr & $1.0000 \times 10^{-2}$ \\
-			eta & 2:10:43 \\
-			time & 0.2130 \\
-			data\_time & 0.0158 \\
-			memory & 11174 \\
-			loss & 0.0021 \\
-			loss\_cls & 0.0000 \\
-			loss\_bbox & 0.0021 \\
-			loss\_obj & 0.0000 \\
-			\hline
-		\end{tabular}
-		\caption{mmengine の学習ログ（Epoch 169, iteration 250）}
-	\end{table}
-	\begin{itemize}
-		\item 表2のloss\_cls、loss\_objの値が0となっている。
-		\item 原因不明なので、損失関数のパラメータを変更して変化するかを確かめたい。
-	\end{itemize}
-	\subsection{クラス数の訂正}
-	\begin{itemize}
-		\item いままでコード内でクラス数が80と記述されていた部分があったが、2に統一したところ、検出精度の改善が見られた。(実験の最初の部分のみの切り取り)
-	\end{itemize}
-	\begin{table}[ht]
-		\centering
-		\caption{各クラスにおける性能比較（旧モデル vs 新モデル）}
-		\begin{tabular}{llll}
-			\hline
-			クラス & 指標 & 以前（旧） & 今回（新） \\
-			\hline
-			\textbf{person} & mAP      & 0.034 & 0.017 \\
-							& mAP\_50  & 0.126 & 0.063 \\
-			\textbf{car}    & mAP      & 0.000 & 0.066 \\
-							& mAP\_50  & 0.000 & 0.221 \\
+			person & 0.024 & 0.108 & 0.001 & 0.027 & 0.072 & 0.100 \\
+			car    & 0.299 & 0.567 & 0.293 & 0.119 & 0.553 & 0.758 \\
 			\hline
 		\end{tabular}
 	\end{table}
+
+	\begin{table}[htbp]
+	\centering
+	\caption{私の検出精度（$\theta_{\mathrm{det}}=0.50$）}
+		\begin{tabular}{lcccccc}
+			\hline
+			\textbf{category} & \textbf{mAP} & \textbf{mAP\_50} & \textbf{mAP\_75} & \textbf{mAP\_s} & \textbf{mAP\_m} & \textbf{mAP\_l} \\
+			\hline
+			person & 0.370 & 0.771 & 0.300 & 0.245 & 0.452 & 0.601 \\
+			car    & 0.304 & 0.647 & 0.238 & 0.116 & 0.401 & 0.649 \\
+			\hline
+		\end{tabular}
+	\end{table}
+
+	\begin{itemize}
+		\item ($\theta_{\mathrm{det}}=0.50$）は信頼度であり、0.50以上のものが疑似ラベルとして使用される。
+		\item 手順は全く変わっておらず、疑似ラベルを作成→SAM2でのアノテーション→学習・検証である。違いとしては損失関数の変更と、細かいパラメータの変更である。
+		\item mAPに関してはperson、carともに越えている。ただ、carに関しては一部下がっている部分が存在する。
+		\item 考えられる原因としては、クラス分類の損失関数として設定しているFocalLossにおいて、バランス係数(alpha)をpersonとcarそれぞれに0.69と0.31と設定してクラス不均衡を減そうとしたことである。
+	\end{itemize}
+	\begin{equation}
+		FL (P_t) = - \alpha _ t(1 - p_t)^ \gamma log(p_t)
+	\end{equation}
+	\begin{itemize}
+		\item (1)はFocalLossの数式であり、$\alpha$はバランス係数であり、クラス間に不均衡がある場合に少ないクラスに対して損失の重みを大きくするために使う。
+		\item $\gamma$は困難サンプルに集中するためのパラメータであり、判別が容易であるサンプルの影響を抑え、難しいサンプルに注目するための関数である。
+		\item どちらも大きい数値であればあるほど影響は大きい。
+	\end{itemize}
 	\subsection{ITSミーティングについて}
 	\begin{itemize}
 		\item 愛知工科大学の久徳先生との毎週月曜日に行われるITSミーティングにおいて、アドバイスをいただいた。
-		\item クラス数が80であった部分は学習時点では80で、最後のファインチューニング時にクラス数を2に絞ることを意図として谷本先輩が設定していた。
+		\item 使用されるクラス数に関しては、RGB画像学習時、また疑似ラベル作成時は80クラス。学習・検証時は2クラスとする。
 		\item 損失関数については既存の損失関数はそれぞれ想定された使い方が存在するので、それに従って適した損失関数を各所に実装する。
 		\item 既存の損失関数でも良いが、谷本先輩は独自の計算での損失関数の作成を目指していた。
 	\end{itemize}

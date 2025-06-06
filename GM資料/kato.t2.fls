@@ -28,8 +28,8 @@ INPUT c:/texlive/2019/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 INPUT c:/texlive/2019/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 INPUT c:/texlive/2019/texmf-dist/tex/latex/graphics-def/dvipdfmx.def
 INPUT c:/texlive/2019/texmf-dist/tex/latex/graphics-def/dvipdfmx.def
-INPUT c:/texlive/2019/texmf-dist/tex/latex/subfig/subfig.sty
-INPUT c:/texlive/2019/texmf-dist/tex/latex/subfig/subfig.sty
+INPUT c:/texlive/2019/texmf-dist/tex/latex/caption/subcaption.sty
+INPUT c:/texlive/2019/texmf-dist/tex/latex/caption/subcaption.sty
 INPUT c:/texlive/2019/texmf-dist/tex/latex/caption/caption.sty
 INPUT c:/texlive/2019/texmf-dist/tex/latex/caption/caption.sty
 INPUT c:/texlive/2019/texmf-dist/tex/latex/caption/caption3.sty

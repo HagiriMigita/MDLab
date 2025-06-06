@@ -2,7 +2,7 @@
 \renewcommand{\baselinestretch}{0.85}
 \usepackage[top=1.5cm, bottom=1.5cm, left=1.5cm, right=1.5cm]{geometry}
 \usepackage[dvipdfmx]{graphicx}
-\usepackage{subfig}
+\usepackage{subcaption}
 \usepackage{float}
 \usepackage{booktabs}
 
@@ -124,6 +124,14 @@
 		\item $\gamma$は困難サンプルに集中するためのパラメータであり、判別が容易であるサンプルの影響を抑え、難しいサンプルに注目するための関数である。
 		\item どちらも大きい数値であればあるほど影響は大きい。
 	\end{itemize}
+		\begin{itemize}
+		\item またバッチサイズがYolox\_sとYolox\_xでそれぞれ16と8であるが、学習率が一律で0.01になっていたので修正した。
+		\item Yolox\_sは0.0025、Yolox\_xは0.00125とした。
+		\item 根拠としてはYOLOX: Exceeding YOLO Series in 2021において(2)で学習率を定めていたことからである。\cite{learning_rate}
+	\end{itemize}
+	\begin{equation}
+		lr_{actually} = lr × BatchSize / 64 (lr=0.01)
+	\end{equation}
 	\subsection{ITSミーティングについて}
 	\begin{itemize}
 		\item 愛知工科大学の久徳先生との毎週月曜日に行われるITSミーティングにおいて、アドバイスをいただいた。
@@ -136,4 +144,8 @@
 			\item FLIRのバージョンアップをする。
 			\item 損失関数に関する理解を深め、より良い検出精度を目指す。できれば独自の計算で損失関数を作成したい。
 		\end{itemize}
+
+\begin{thebibliography}{10}
+	\bibitem{learning_rate}Zheng Ge、 Songtao Liu、 Feng Wang、 Zeming Li、 Jian Sun、YOLOX: Exceeding YOLO Series in 2021 (6 Aug 2021)
+\end{thebibliography}
 \end{document}

@@ -1,9 +1,9 @@
 # Fdb version 3
-["dvipdf"] 1749451250 "kato.t2.dvi" "kato.t2.pdf" "kato.t2" 1749451251
-  "kato.t2.dvi" 1749451250 12004 04c5654600a33e35b0da1d7f117f769e "latex"
+["dvipdf"] 1749451389 "kato.t2.dvi" "kato.t2.pdf" "kato.t2" 1749451390
+  "kato.t2.dvi" 1749451389 12008 7a80e2c70ddb7966a668af2be96bafec "latex"
   (generated)
   "kato.t2.pdf"
-["latex"] 1749451249 "kato.t2.tex" "kato.t2.dvi" "kato.t2" 1749451251
+["latex"] 1749451388 "kato.t2.tex" "kato.t2.dvi" "kato.t2" 1749451390
   "c:/texlive/2019/texmf-dist/fonts/map/fontname/texfonts.map" 1557392318 3332 103109f5612ad95229751940c61aada0 ""
   "c:/texlive/2019/texmf-dist/fonts/tfm/ptex-fonts/standard/goth10.tfm" 1557393163 1196 5981e79c37b2cfd27b3612a6783cd4b6 ""
   "c:/texlive/2019/texmf-dist/fonts/tfm/ptex-fonts/standard/min10.tfm" 1557393163 1196 1be730212205a270378fba11a44765dc ""
@@ -36,9 +36,9 @@
   "fig/FIR.png" 1745306988 26958 c54a579041573a4a5277d6ce52993e00 ""
   "fig/RGB.png" 1745306969 39964 18dda071f71fe4c5a93918e3ebb924ea ""
   "fig/domain_adaptation.png" 1744970788 120831 451ef60950922813df729a75b4e4f5b2 ""
-  "kato.t2.aux" 1749451250 1916 d89b5e2fb84bf125c82ac4f5526142e1 "latex"
-  "kato.t2.tex" 1749451247 8863 1805f8ce55a94c9c319516d449a2dfef ""
+  "kato.t2.aux" 1749451389 1916 d89b5e2fb84bf125c82ac4f5526142e1 "latex"
+  "kato.t2.tex" 1749451386 8867 7a2438e623d4cd731b0aa270e371738a ""
   (generated)
+  "kato.t2.dvi"
   "kato.t2.aux"
   "kato.t2.log"
-  "kato.t2.dvi"

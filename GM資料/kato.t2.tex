@@ -74,7 +74,7 @@
 		\caption{各カテゴリの検出精度（例）}
 	\end{table}
 	\begin{itemize}
-		\item mAPは閾値0.50~0.95における検出精度の平均値である。
+		\item mAPは閾値0.50\~0.95における検出精度の平均値である。
 	\end{itemize}
 	\section{前回のGMからの進捗}
 	\subsection{損失関数の実装について}
@@ -86,7 +86,7 @@
 	\subsection{谷本先輩の修士論文時点での検出精度と現時点での検出精度の比較}
 	\begin{table}[htbp]
 	\centering
-	\caption{谷本先輩の検出精度（$\theta_{\mathrm{det}}=0.50$）}
+	\caption{谷本先輩の検出精度($\theta_{\mathrm{det}}=0.50$,lr=0.01),best\_epoc=100}
 		\begin{tabular}{lcccccc}
 			\hline
 			\textbf{category} & \textbf{mAP} & \textbf{mAP\_50} & \textbf{mAP\_75} & \textbf{mAP\_s} & \textbf{mAP\_m} & \textbf{mAP\_l} \\
@@ -99,28 +99,27 @@
 
 	\begin{table}[htbp]
 	\centering
-	\caption{私の検出精度（$\theta_{\mathrm{det}}=0.50$）}
+	\caption{私の検出精度($\theta_{\mathrm{det}}=0.70$,Yolox\_s\_lr=0.0025,Yolox\_x\_lr=0.00125),best\_epoc=10}
 		\begin{tabular}{lcccccc}
 			\hline
 			\textbf{category} & \textbf{mAP} & \textbf{mAP\_50} & \textbf{mAP\_75} & \textbf{mAP\_s} & \textbf{mAP\_m} & \textbf{mAP\_l} \\
 			\hline
-			person & 0.370 & 0.771 & 0.300 & 0.245 & 0.452 & 0.601 \\
-			car    & 0.304 & 0.647 & 0.238 & 0.116 & 0.401 & 0.649 \\
+			person & 0.404 & 0.819 & 0.345 & 0.276 & 0.491 & 0.655 \\
+			car    & 0.395 & 0.761 & 0.372 & 0.185 & 0.455 & 0.737 \\
 			\hline
 		\end{tabular}
 	\end{table}
 
 	\begin{itemize}
-		\item ($\theta_{\mathrm{det}}=0.50$）は信頼度であり、0.50以上のものが疑似ラベルとして使用される。
-		\item 手順は全く変わっておらず、疑似ラベルを作成→SAM2でのアノテーション→学習・検証である。違いとしては損失関数の変更と、細かいパラメータの変更である。
-		\item mAPに関してはperson、carともに越えている。ただ、carに関しては一部下がっている部分が存在する。
-		\item 考えられる原因としては、クラス分類の損失関数として設定しているFocalLossにおいて、バランス係数(alpha)をpersonとcarそれぞれに0.69と0.31と設定してクラス不均衡を減そうとしたことである。
+		\item $\theta_{\mathrm{det}}$は信頼度であり、信頼度以上のものが疑似ラベルとして使用される。
+		\item 手順は全く変わっておらず、RGB画像を元に疑似ラベルを作成→SAM2でのアノテーション→学習・検証である。違いとしては損失関数の変更と、細かいパラメータの変更である。
+		\item mAPが上がった原因としては、クラス分類の損失関数として設定しているFocalLossにおいて、バランス係数(alpha)をpersonとcarそれぞれに0.60と0.40と設定してクラス不均衡を減そうとしたことである。また、信頼度を0.50から0.70へ変更した。
 	\end{itemize}
 	\begin{equation}
 		FL (P_t) = - \alpha _ t(1 - p_t)^ \gamma log(p_t)
 	\end{equation}
 	\begin{itemize}
-		\item (1)はFocalLossの数式であり、$\alpha$はバランス係数であり、クラス間に不均衡がある場合に少ないクラスに対して損失の重みを大きくするために使う。
+		\item (1)はFocalLossの数式であり、$\alpha$はバランス係数であり、クラス間に不均衡がある場合に少ないクラスに対して損失の重みを大きくするために使う。\cite{FocalLoss}
 		\item $\gamma$は困難サンプルに集中するためのパラメータであり、判別が容易であるサンプルの影響を抑え、難しいサンプルに注目するための関数である。
 		\item どちらも大きい数値であればあるほど影響は大きい。
 	\end{itemize}
@@ -134,7 +133,7 @@
 	\end{equation}
 	\subsection{ITSミーティングについて}
 	\begin{itemize}
-		\item 愛知工科大学の久徳先生との毎週月曜日に行われるITSミーティングにおいて、アドバイスをいただいた。
+		\item 愛知工科大学の久徳先生との毎週月曜日に行われるITSミーティングにおいて、ご指摘をいただいた。
 		\item 使用されるクラス数に関しては、RGB画像学習時、また疑似ラベル作成時は80クラス。学習・検証時は2クラスとする。
 		\item 損失関数については既存の損失関数はそれぞれ想定された使い方が存在するので、それに従って適した損失関数を各所に実装する。
 		\item 既存の損失関数でも良いが、谷本先輩は独自の計算での損失関数の作成を目指していた。
@@ -146,6 +145,7 @@
 		\end{itemize}
 
 \begin{thebibliography}{10}
-	\bibitem{learning_rate}Zheng Ge、 Songtao Liu、 Feng Wang、 Zeming Li、 Jian Sun、YOLOX: Exceeding YOLO Series in 2021 (6 Aug 2021)
+	\bibitem{FocalLoss}Tsung-Yi Lin, Priya Goyal, Ross Girshick, Kaiming He, Piotr Dollár Focal Loss for Dense Object Detection (7 Feb 2018)
+	\bibitem{learning_rate}Zheng Ge,Songtao Liu,Feng Wang,Zeming Li,Jian Sun YOLOX: Exceeding YOLO Series in 2021 (6 Aug 2021)
 \end{thebibliography}
 \end{document}

@@ -60,4 +60,6 @@ INPUT extractbb -B cropbox -O fig/domain_adaptation.png
 INPUT c:/texlive/2019/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
 INPUT c:/texlive/2019/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 OUTPUT kato.t2.dvi
+INPUT fig/Loss_graph.png
+INPUT extractbb -B cropbox -O fig/Loss_graph.png
 INPUT kato.t2.aux

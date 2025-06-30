@@ -1,9 +1,9 @@
 # Fdb version 3
-["dvipdf"] 1749489007 "kato.t2.dvi" "kato.t2.pdf" "kato.t2" 1749489007
-  "kato.t2.dvi" 1749489007 12188 8b57094a8327d1446a43829c003a9661 "latex"
+["dvipdf"] 1750740309 "kato.t2.dvi" "kato.t2.pdf" "kato.t2" 1750740309
+  "kato.t2.dvi" 1750740309 13084 76e4ab8efef7b20c3898cbb9e03240a7 "latex"
   (generated)
   "kato.t2.pdf"
-["latex"] 1749489005 "kato.t2.tex" "kato.t2.dvi" "kato.t2" 1749489007
+["latex"] 1750740307 "kato.t2.tex" "kato.t2.dvi" "kato.t2" 1750740309
   "c:/texlive/2019/texmf-dist/fonts/map/fontname/texfonts.map" 1557392318 3332 103109f5612ad95229751940c61aada0 ""
   "c:/texlive/2019/texmf-dist/fonts/tfm/ptex-fonts/standard/goth10.tfm" 1557393163 1196 5981e79c37b2cfd27b3612a6783cd4b6 ""
   "c:/texlive/2019/texmf-dist/fonts/tfm/ptex-fonts/standard/min10.tfm" 1557393163 1196 1be730212205a270378fba11a44765dc ""
@@ -34,11 +34,12 @@
   "c:/texlive/2019/texmf-var/web2c/eptex/platex.fmt" 1557393836 4521557 fcf7db8bd9365fa7761707ca53dca607 ""
   "c:/texlive/2019/texmf.cnf" 1557393744 673 4ae7b2f49cee444c5343a45b5d0f169c ""
   "fig/FIR.png" 1745306988 26958 c54a579041573a4a5277d6ce52993e00 ""
+  "fig/Loss_graph.png" 1750737773 59178 2b3b4196bcbed44051bfa93a1426ac34 ""
   "fig/RGB.png" 1745306969 39964 18dda071f71fe4c5a93918e3ebb924ea ""
   "fig/domain_adaptation.png" 1744970788 120831 451ef60950922813df729a75b4e4f5b2 ""
-  "kato.t2.aux" 1749489007 1886 3721fdc7e8f883e6f313a2cd611e3ee3 "latex"
-  "kato.t2.tex" 1749489002 9094 d4c270e2a009d328612c5c712afcbb5c ""
+  "kato.t2.aux" 1750740309 2009 3b9c97be6c131f31af284d795d028271 "latex"
+  "kato.t2.tex" 1750740299 9747 09db75cc4926c37bd29b71e744a82f94 ""
   (generated)
-  "kato.t2.log"
-  "kato.t2.dvi"
   "kato.t2.aux"
+  "kato.t2.dvi"
+  "kato.t2.log"

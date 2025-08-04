@@ -355,3 +355,16 @@ export PYTHONPATH=/work/kato.t2/fir_domain_adaptation/SAM2/sam2
 - loss_objについては距離に関する損失なので、数値が1より大きくなる可能性がある。重みを考えなければならない。故にloss_bboxが支配的な学習を行っている可能性が高い。
 - 実験において比較をする際は変更要素を1つに絞り、実験を行った方がどの要素が実験においてプラスになるかわかる。
 - 小さいオブジェクトに対して強い方法を調べる。 
+
+# 2025/07/08
+- とりあえず、loss_weight=1.0,1.0,0.1の実験結果を出したい。
+- MMdetectionのlossesにgfocal_loss.pyがあった。その中にQualityFocalLossとDistributionFocalLossが存在しており、QFocalLossがおすすめらしい。
+- QFocalLossの目的:分類スコアにIoUなどの品質（Quality）を取り入れた分類損失
+- ターゲットは「クラスラベル」＋「品質スコア（通常IoU）」
+- 確信度（score）が高いほど損失を強くし、低いと弱くする（ノイズ耐性あり）
+````
+# 例：pred = モデルのlogits (N, C)
+# target = (class_label: (N,), confidence_score: (N,))
+loss = QualityFocalLoss(beta=2.0, loss_weight=1.0)
+loss(pred, target)
+````

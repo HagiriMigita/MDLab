@@ -393,6 +393,11 @@ loss(pred, target)
 - データセット拡充できればそれ中間発表で言える
 - 検出率が低いシーンが挙げられていれば、方向性を決めるヒントになる
 
+# 2025/08/07
+- FLIR_ADAS_v2について
+    - trainとvalについてはclip済のdataが揃いました。
+    - v1のときにあったrefined_rgb_annotations.jsonはv2におけるcoco.jsonをclip後のファイルに合わせて作ったcoco形式のjsonファイルだと推測できるので、coco.jsonを改造します。
+
 
 
 

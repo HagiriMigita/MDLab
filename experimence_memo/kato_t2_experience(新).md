@@ -397,7 +397,6 @@ loss(pred, target)
 - 現在v2のtrainとvalの写真はclip済
 - FLIRのv2フォルダに入っているcoco.jsonをclip済の写真に対応するように、除外された写真のアノテーション情報をcoco.jsonから除外。coco.jsonをrefined_rgb_annotations.json(thermalも)に改造する。
 - testの写真はclipする必要はあるのか？(おそらくない)
-# 2025/08/07
 - FLIR_ADAS_v2について
     - trainとvalについてはclip済のdataが揃いました。
     - v1のときにあったrefined_rgb_annotations.jsonはv2におけるcoco.jsonをclip後のファイルに合わせて作ったcoco形式のjsonファイルだと推測できるので、coco.jsonを改造します。

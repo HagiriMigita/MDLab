@@ -393,10 +393,13 @@ loss(pred, target)
 - データセット拡充できればそれ中間発表で言える
 - 検出率が低いシーンが挙げられていれば、方向性を決めるヒントになる
 
+# 2025/08/07
+- 現在v2のtrainとvalの写真はclip済
+- FLIRのv2フォルダに入っているcoco.jsonをclip済の写真に対応するように、除外された写真のアノテーション情報をcoco.jsonから除外。coco.jsonをrefined_rgb_annotations.json(thermalも)に改造する。
+- testの写真はclipする必要はあるのか？(おそらくない)
 
-
-
-
+# 2025/08/17
+- お盆明け、最初にやるべきことは、coco形式のjsonファイルをclip済の画像群に対応したものにする。
 
 
 

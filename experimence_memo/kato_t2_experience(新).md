@@ -405,6 +405,9 @@ loss(pred, target)
 # 2025/08/17
 - お盆明け、最初にやるべきことは、coco形式のjsonファイルをclip済の画像群に対応したものにする。
 
+# 2025/09/01
+- convert_annotation_vis_to_fir.pyにpair.jsonを渡していなかったことが原因と考えられる。
+- 
 
 
 

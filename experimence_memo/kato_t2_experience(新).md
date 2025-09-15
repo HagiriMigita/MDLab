@@ -394,6 +394,9 @@ loss(pred, target)
 - 検出率が低いシーンが挙げられていれば、方向性を決めるヒントになる
 
 # 2025/08/07
+- 現在v2のtrainとvalの写真はclip済
+- FLIRのv2フォルダに入っているcoco.jsonをclip済の写真に対応するように、除外された写真のアノテーション情報をcoco.jsonから除外。coco.jsonをrefined_rgb_annotations.json(thermalも)に改造する。
+- testの写真はclipする必要はあるのか？(おそらくない)
 - FLIR_ADAS_v2について
     - trainとvalについてはclip済のdataが揃いました。
     - v1のときにあったrefined_rgb_annotations.jsonはv2におけるcoco.jsonをclip後のファイルに合わせて作ったcoco形式のjsonファイルだと推測できるので、coco.jsonを改造します。
@@ -434,10 +437,12 @@ testの検出精度比較
 +----------+-------+--------+--------+-------+-------+-------+
 
 
+# 2025/08/17
+- お盆明け、最初にやるべきことは、coco形式のjsonファイルをclip済の画像群に対応したものにする。
 
-
-
-
+# 2025/09/01
+- convert_annotation_vis_to_fir.pyにpair.jsonを渡していなかったことが原因と考えられる。
+- 
 
 
 

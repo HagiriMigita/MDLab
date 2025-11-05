@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.2-190131-2.6 (utf8.sjis) (TeX Live 2019/W32TeX) (preloaded format=platex 2019.5.9)  24 JUN 2025 13:45
+This is e-pTeX, Version 3.14159265-p3.8.2-190131-2.6 (utf8.sjis) (TeX Live 2019/W32TeX) (preloaded format=platex 2019.5.9)  4 NOV 2025 14:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -122,25 +122,57 @@ Package: booktabs 2016/04/27 v1.618033 publication quality tables
 \@thisruleclass=\count103
 \@lastruleclass=\count104
 \@thisrulewidth=\dimen150
+) (c:/texlive/2019/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count105
+\lst@gtempboxa=\box45
+\lst@token=\toks19
+\lst@length=\count106
+\lst@currlwidth=\dimen151
+\lst@column=\count107
+\lst@pos=\count108
+\lst@lostspace=\dimen152
+\lst@width=\dimen153
+\lst@newlines=\count109
+\lst@lineno=\count110
+\lst@maxwidth=\dimen154
+ (c:/texlive/2019/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2019/02/27 1.8b (Carsten Heinz)
+\c@lstnumber=\count111
+\lst@skipnumbers=\count112
+\lst@framebox=\box46
+) (c:/texlive/2019/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2019/02/27 1.8b listings configuration
+))
+Package: listings 2019/02/27 1.8b (Carsten Heinz)
+ (c:/texlive/2019/texmf-dist/tex/latex/jvlisting/jvlisting.sty
+Package: jvlisting 2011/11/17 v0.7 Formatted Program Listings
+\jvl@idt=\count113
+\jvl@tmphyphenchar=\count114
+\jvl@fileinput=\read1
+\listingskipamount=\skip43
+\listingindent=\dimen155
+\prelistingpenalty=\count115
+\listingpenalty=\count116
+\postlistingpenalty=\count117
 ) (./kato.t2.aux)
 \openout1 = `kato.t2.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for JY1/mc/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for JT1/mc/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for JY1/mc/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for JT1/mc/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: dvips
@@ -178,48 +210,41 @@ LaTeX Font Info:    ... okay on input line 9.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
+Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
+\c@lstlisting=\count118
 LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <14.4> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 24.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 44.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <14.4> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 24.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 26.
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 44.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 46.
 (c:/texlive/2019/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 26.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 46.
 File: fig/RGB.png Graphic file (type bmp)
 <fig/RGB.png>
 File: fig/FIR.png Graphic file (type bmp)
 <fig/FIR.png>
 File: fig/domain_adaptation.png Graphic file (type bmp)
 <fig/domain_adaptation.png>
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 66.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 66.
-LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <10> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 68.
-LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <10> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 68.
 LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <12> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 80.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 70.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <12> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 80.
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 70.
+File: fig/図1.png Graphic file (type bmp)
+<fig/図1.png>
  [1
 
-]
-File: fig/Loss_graph.png Graphic file (type bmp)
-<fig/Loss_graph.png>
- [2] [3] (./kato.t2.aux) ) 
+] [2] (./kato.t2.aux) ) 
 Here is how much of TeX's memory you used:
- 2460 strings out of 493223
- 38015 string characters out of 6147485
- 122698 words of memory out of 5000000
- 6472 multiletter control sequences out of 15000+600000
- 9955 words of font info for 40 fonts, out of 8000000 for 9000
+ 3833 strings out of 493223
+ 57539 string characters out of 6147485
+ 136005 words of memory out of 5000000
+ 7830 multiletter control sequences out of 15000+600000
+ 9647 words of font info for 39 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
- 42i,8n,40p,337b,398s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,6n,40p,337b,399s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on kato.t2.dvi (3 pages, 13084 bytes).
+Output written on kato.t2.dvi (2 pages, 5456 bytes).

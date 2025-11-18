@@ -649,3 +649,19 @@ model = dict(
 # 2025/11/18 LT
 - annotationにおけるscoreというものは尤度なのか確信度なのか
 - 今まで、thermalの画像データをhours:dayのものだけをデータセットとして読み込んでいたが、その場合欠落しているものが拾われずにthermalだけ枚数が少ない状況だった→pairs.jsonとrgb_annotations.jsonからrgbとの対応付けとhoursの情報を抽出→rgbと同じく645枚の画像データ取得に成功
+
+- optunaでパラメータ探索をした結果、以下の結果になった。
+- /work/kato.t2/fir_domain_adaptation/experiments/TFTRAIN04/optuna_trials/251118_013323/trial_0026
+```
+lr          : 0.008899016425117203
+weight_decay: 0.00031475782484270535
+cls_gamma   : 3.4280302119685513
+cls_alpha   : 0.6948062368002415
+cls_loss_w  : 1.9549504884157618
+obj_gamma   : 3.3649360915495468
+obj_alpha   : 0.6224107342709038
+obj_loss_w  : 2.5924295633290706
+bbox_loss_w : 2.9726769921601677
+```
+- 最良mAPの計算式としては、personとcarのmAP_50の平均
+- それが最も大きいもののパラメータを選択

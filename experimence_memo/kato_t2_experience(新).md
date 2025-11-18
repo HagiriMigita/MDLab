@@ -638,3 +638,14 @@ model = dict(
 - 現在optunaで最適なパラメータの探索を行っている。
 - 先行研究(谷本先輩)では、アノテーションのスコアで足切りを行っており、その値は0.5になっていた。
 - 時間はないが、自分なりの損失関数を作ってみたい。
+
+- /work/kato.t2/fir_domain_adaptation/experiments/TFTRAIN03_loss/yolox_s/generate_pseudo_labeled_train_annotation_using_sam2_0.5_20251114_023001/pred_train_data_annotation_fir_bbox_arranged.jsonにおけるクラス毎のannnotatation数
+- person:4909、car:13453
+
+- /work/kato.t2/fir_domain_adaptation/experiments/TFTRAIN04/yolox_s/generate_pseudo_labeled_train_annotation_using_sam2_0.5_20251117_024253/pred_train_data_annotation_fir_bbox_arranged_0.5.jsonにおけるクラス毎のannotation数
+- person:1026、car:2422
+
+
+# 2025/11/18 LT
+- annotationにおけるscoreというものは尤度なのか確信度なのか
+- 今まで、thermalの画像データをhours:dayのものだけをデータセットとして読み込んでいたが、その場合欠落しているものが拾われずにthermalだけ枚数が少ない状況だった→pairs.jsonとrgb_annotations.jsonからrgbとの対応付けとhoursの情報を抽出→rgbと同じく645枚の画像データ取得に成功

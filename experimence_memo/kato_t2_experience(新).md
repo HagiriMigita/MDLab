@@ -665,3 +665,20 @@ bbox_loss_w : 2.9726769921601677
 ```
 - 最良mAPの計算式としては、personとcarのmAP_50の平均
 - それが最も大きいもののパラメータを選択
+
+# 2025/11/21
+- converter.pyと依存関係にあるプログラム
+````
+tools/convert_annotation_fir_to_vis.py
+tools/convert_annotation_vis_to_fir.py
+tools/convert_annotation_vis_to_fir_v1+v2.py
+tools/convert_annotation_vis_to_fir_v2.py
+tools/merge_result_annotaiton.py
+tools/refine_fir_annotation.py
+tools/symbolic_link.py
+````
+
+- bbox_converter.pyと依存関係にあるプログラム
+````
+converter.py
+````

@@ -1,9 +1,9 @@
 # Fdb version 3
-["dvipdf"] 1762235618 "kato.t2.dvi" "kato.t2.pdf" "kato.t2" 1762235619
-  "kato.t2.dvi" 1762235618 5456 79216957931f90e9b4d58ccf8ec2cc55 "latex"
+["dvipdf"] 1763999019 "kato.t2.dvi" "kato.t2.pdf" "kato.t2" 1763999019
+  "kato.t2.dvi" 1763999019 7572 faf41d45f3bf633e4b05442729fabea3 "latex"
   (generated)
   "kato.t2.pdf"
-["latex"] 1762235616 "kato.t2.tex" "kato.t2.dvi" "kato.t2" 1762235619
+["latex"] 1763999017 "kato.t2.tex" "kato.t2.dvi" "kato.t2" 1763999019
   "c:/texlive/2019/texmf-dist/fonts/map/fontname/texfonts.map" 1557392318 3332 103109f5612ad95229751940c61aada0 ""
   "c:/texlive/2019/texmf-dist/fonts/tfm/ptex-fonts/standard/goth10.tfm" 1557393163 1196 5981e79c37b2cfd27b3612a6783cd4b6 ""
   "c:/texlive/2019/texmf-dist/fonts/tfm/ptex-fonts/standard/min10.tfm" 1557393163 1196 1be730212205a270378fba11a44765dc ""
@@ -36,13 +36,14 @@
   "c:/texlive/2019/texmf-dist/web2c/texmf.cnf" 1557392564 35484 cb1661360667bf4db662a8895053b554 ""
   "c:/texlive/2019/texmf-var/web2c/eptex/platex.fmt" 1557393836 4521557 fcf7db8bd9365fa7761707ca53dca607 ""
   "c:/texlive/2019/texmf.cnf" 1557393744 673 4ae7b2f49cee444c5343a45b5d0f169c ""
-  "fig/FIR.png" 1745306988 26958 c54a579041573a4a5277d6ce52993e00 ""
-  "fig/RGB.png" 1745306969 39964 18dda071f71fe4c5a93918e3ebb924ea ""
+  "fig/FLIR_FIR_00002.jpg" 1597715326 139664 bee41c1bf52a18d24801b96851d1fa4b ""
+  "fig/FLIR_RGB_00002.jpg" 1597715582 503026 34a7fbe401f654f8746e5dd9cc868238 ""
   "fig/domain_adaptation.png" 1744970788 120831 451ef60950922813df729a75b4e4f5b2 ""
-  "fig/ê}1.png" 1760970100 91153 ede146d6926f558c422d788aaa7b6a0f ""
-  "kato.t2.aux" 1762235618 1281 339d2fc7f02972228ecf3e43d1ee7a92 "latex"
-  "kato.t2.tex" 1762235614 4750 d1dbf562b2ea150cd6e2e8b25f24810f ""
+  "fig/v1_score_histogram.png" 1763381683 35245 dd256febf952bcc65af1b327b6797bb6 ""
+  "fig/v2_score_histogram.png" 1763381689 32621 e9904ec9b360f27635910981fb9eb38a ""
+  "kato.t2.aux" 1763999019 1705 84b9e285d2dc09a8cef7e93064473353 "latex"
+  "kato.t2.tex" 1763999014 6384 48e72ab15a01425ff82cb7c4a591e20d ""
   (generated)
-  "kato.t2.dvi"
   "kato.t2.log"
+  "kato.t2.dvi"
   "kato.t2.aux"

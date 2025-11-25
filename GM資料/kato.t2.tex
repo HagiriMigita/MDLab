@@ -30,7 +30,7 @@
 
 	\begin{flushright}
 		MDLabグループミーティング資料\\
-		25年11月4日(火)
+		25年12月02日(火)
 	\end{flushright}
 
 	\begin{center}
@@ -52,12 +52,12 @@
 		\centering
 		\begin{minipage}[b]{0.3\columnwidth}
 			\centering
-			\includegraphics[height=3cm]{fig/RGB.png}%
+			\includegraphics[height=3cm]{fig/FLIR_RGB_00002.jpg}%
 			\caption{RGB画像}
 		\end{minipage}
 		\begin{minipage}[b]{0.3\columnwidth}
 			\centering
-			\includegraphics[height=3cm]{fig/FIR.png}%
+			\includegraphics[height=3cm]{fig/FLIR_FIR_00002.jpg}%
 			\caption{FIR画像}
 		\end{minipage}
 		\begin{minipage}[b]{0.35\columnwidth}
@@ -69,21 +69,48 @@
 	\section{これまでの研究のまとめ}
 	\subsection{データセットの更新}
 	\begin{itemize}
-		\item データセットをFLIR\_ADAS\_v1からFLIR\_ADAS\_v2に変更。
-		\item v2では解像度・視野の補正、アノテーションの変換を行っているので、v1から画像の枚数は減ってしまったが、信頼性の高いデータが含まれている。 
+		\item FLIR\_ADAS\_v1に加え新たなデータセットとしてFLIR\_ADAS\_v2とそれらを合わせたFLIR\_ADAS\_v1+v2を作成した
+		\item v2では解像度・視野の補正、アノテーションの変換を行っているので、v1から画像の枚数は減ってしまったが、信頼性の高いデータが含まれている。結果として、v2はscoreのグラフが右に移動している。(図4、図5) 
+		\item v1とv2では含まれるcarとpersonのアノテーションの数やそれぞれの大きさの個数が異なるので、学習や検出結果で異なる特性を持つ。
+		\item v1+v2では画像のサイズが異なることから射影変換行列の切り替えが必要となる。実質現在はv1のみがデータとして有意にはたらいている。
 	\end{itemize}
+	\begin{table}[h]
+		\centering
+		\begin{minipage}{0.48\linewidth}
+			\centering
+			\begin{tabular}{c|rrrr}
+				\hline
+				category\_id & Small & Medium & Large & Total \\
+				\hline
+				person & 1762 & 2784 & 363 & 4909 \\
+				car & 5611 & 6425 & 1417 & 13453 \\
+				\hline
+				all & 7373 & 9209 & 1780 & 18362 \\
+				\hline
+			\end{tabular}
+			\caption{v1(sam2整形後のannotaionの数)}
+		\end{minipage}
+		\begin{minipage}{0.48\linewidth}
+			\centering
+			\begin{tabular}{c|rrrr}
+				\hline
+				category\_id & Small & Medium & Large & Total \\
+				\hline
+				person & 452 & 551 & 23 & 1026 \\
+				car & 951 & 1121 & 350 & 2422 \\
+				\hline
+				all & 1403 & 1672 & 373 & 3448 \\
+				\hline
+			\end{tabular}
+			\caption{v2(sam2整形後のannotationの数)}
+		\end{minipage}
+	\end{table}
 	\subsection{損失関数の変更}
 	\begin{itemize}
-		\item 従来手法ではクラス、オブジェクトに対してBCELossが使用されていた。
-		\item Personのデータ数が少ない、また車と比べて検出精度が低いことからクラス不均衡に対して効果的に作用するFocalLossに変更。
+		\item 従来手法ではクラス、オブジェクトに対してBCELossが使用されていた、bboxにはIoULossが使用されていた。
+		\item personのデータ数が少ない、また車と比べて検出精度が低いことからクラス不均衡に対して効果的に作用するFocalLossに変更。
+		\item bboxはCIoULossに変更した。
 	\end{itemize}
-	\begin{figure}[ht]
-		\centering
-		\begin{minipage}[b]{0.3\columnwidth}
-			\includegraphics[height=3cm]{fig/図1.png}
-			\caption{FocalLossにおける予測確立と損失の関係}
-		\end{minipage}
-	\end{figure}
 	\section{前回のLTからの進捗}
 		\begin{itemize}
 			\item v1からv2へのデータセットの更新という形ではなく、v1+v2でデータセットの拡張を図る方針に変更した。
@@ -101,4 +128,17 @@
 	\bibitem{FocalLoss}Tsung-Yi Lin, Priya Goyal, Ross Girshick, Kaiming He, Piotr Dollár Focal Loss for Dense Object Detection (7 Feb 2018)
 	\bibitem{learning_rate}Zheng Ge,Songtao Liu,Feng Wang,Zeming Li,Jian Sun YOLOX: Exceeding YOLO Series in 2021 (6 Aug 2021)
 \end{thebibliography}
+	\begin{figure}[ht]
+		\centering
+		\begin{minipage}[b]{0.4\columnwidth}
+			\centering
+			\includegraphics[height=5cm]{fig/v1_score_histogram.png}
+			\caption{v1のアノテーションの各スコア}			
+		\end{minipage}
+		\begin{minipage}[b]{0.4\columnwidth}
+			\centering
+			\includegraphics[height=5cm]{fig/v2_score_histogram.png}
+			\caption{v2のアノテーションの各スコア}			
+		\end{minipage}
+	\end{figure}
 \end{document}

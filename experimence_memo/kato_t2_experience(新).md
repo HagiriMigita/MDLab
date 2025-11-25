@@ -653,3 +653,118 @@ model = dict(
 - 現在optunaで最適なパラメータの探索を行っている。
 - 先行研究(谷本先輩)では、アノテーションのスコアで足切りを行っており、その値は0.5になっていた。
 - 時間はないが、自分なりの損失関数を作ってみたい。
+
+- /work/kato.t2/fir_domain_adaptation/experiments/TFTRAIN03_loss/yolox_s/generate_pseudo_labeled_train_annotation_using_sam2_0.5_20251114_023001/pred_train_data_annotation_fir_bbox_arranged.jsonにおけるクラス毎のannnotatation数
+- person:4909、car:13453
+
+- /work/kato.t2/fir_domain_adaptation/experiments/TFTRAIN04/yolox_s/generate_pseudo_labeled_train_annotation_using_sam2_0.5_20251117_024253/pred_train_data_annotation_fir_bbox_arranged_0.5.jsonにおけるクラス毎のannotation数
+- person:1026、car:2422
+
+
+# 2025/11/18 LT
+- annotationにおけるscoreというものは尤度なのか確信度なのか
+- 今まで、thermalの画像データをhours:dayのものだけをデータセットとして読み込んでいたが、その場合欠落しているものが拾われずにthermalだけ枚数が少ない状況だった→pairs.jsonとrgb_annotations.jsonからrgbとの対応付けとhoursの情報を抽出→rgbと同じく645枚の画像データ取得に成功
+
+- optunaでパラメータ探索をした結果、以下の結果になった。
+- /work/kato.t2/fir_domain_adaptation/experiments/TFTRAIN04/optuna_trials/251118_013323/trial_0026
+```
+lr          : 0.008899016425117203
+weight_decay: 0.00031475782484270535
+cls_gamma   : 3.4280302119685513
+cls_alpha   : 0.6948062368002415
+cls_loss_w  : 1.9549504884157618
+obj_gamma   : 3.3649360915495468
+obj_alpha   : 0.6224107342709038
+obj_loss_w  : 2.5924295633290706
+bbox_loss_w : 2.9726769921601677
+```
+- 最良mAPの計算式としては、personとcarのmAP_50の平均
+- それが最も大きいもののパラメータを選択
+
+# 2025/11/21
+- converter.pyと依存関係にあるプログラム
+````
+tools/convert_annotation_fir_to_vis.py
+tools/convert_annotation_vis_to_fir.py
+tools/convert_annotation_vis_to_fir_v1+v2.py
+tools/convert_annotation_vis_to_fir_v2.py
+tools/merge_result_annotaiton.py
+tools/refine_fir_annotation.py
+tools/symbolic_link.py
+````
+
+- bbox_converter.pyと依存関係にあるプログラム
+````
+converter.py
+````
+
+- 学習時のmAPとして、v1はやはりpersonのmAP_sが小さく、v2はpersonのmAP_sが大きい(比較的)
+- v1も決してpersonのSmallのannotaitonの数が少ないわけではない
+- carのmAPはv1の方が圧倒的に大きい
+
+- v2のサイズ別アノテーションの数
+````
+| category_id | Small | Medium | Large | Total |
+|-------------|-------|--------|-------|-------|
+| 1 | 9504 | 1135 | 20 | 10659 |
+| 3 | 14967 | 2600 | 417 | 17984 |
+| all | 24471 | 3735 | 437 | 28643 |
+annotation_count_to_get: 27000
+annotation_count: 27000
+score_to_set: 0.011462477967143059
+````
+
+- v1のサイズ別アノテーションの数
+````
+| category_id | Small | Medium | Large | Total |
+|-------------|-------|--------|-------|-------|
+| 3 | 60336 | 13957 | 1968 | 76261 |
+| 1 | 23170 | 5083 | 367 | 28620 |
+| all | 83506 | 19040 | 2335 | 104881 |
+annotation_count_to_get: 27000
+annotation_count: 27000
+score_to_set: 0.25729888677597046
+````
+
+- v1のsam2整形後
+`````
+index created!
+| category_id | Small | Medium | Large | Total |
+|-------------|-------|--------|-------|-------|
+| 3 | 5611 | 6425 | 1417 | 13453 |
+| 1 | 1762 | 2784 | 363 | 4909 |
+| all | 7373 | 9209 | 1780 | 18362 |
+annotation_count_to_get: 27000
+annotation_count: 18362
+score_to_set: 0.5000089406967163
+`````
+
+- v2のsam2整形後
+````
+| category_id | Small | Medium | Large | Total |
+|-------------|-------|--------|-------|-------|
+| 3 | 951 | 1121 | 350 | 2422 |
+| 1 | 452 | 551 | 23 | 1026 |
+| all | 1403 | 1672 | 373 | 3448 |
+annotation_count_to_get: 27000
+annotation_count: 3448
+score_to_set: 0.5003814101219177
+````
+
+# 2025/11/26
+- 現在は先行研究のTFTRAIN03の損失関数のパラメータ探索を実行中。
+- 私の卒論のコアはデータセットの更新&拡張、損失関数の更新。損失関数の最適化。これらのあらゆる結果を比較する。
+- 先行研究と提案手法の比較
+    - TFTRAIN03(谷本手法,default_loss)におけるv1,v2,v1+v2の結果比較→データセットの比較
+    - TFTRAIN03(optimized_default_loss),TFTRAIN03_loss(optimized_FocalLoss,CIoULoss)の比較→損失関数の比較
+    - TFTRAIN03(default_loss),TFTRAIN03(optimized_default_loss)の比較→損失関数の最適化の影響の比較
+    - TFTRAIN03(v1,谷本手法,default_loss)と、TFTRAIN04(v2,optimized_FocalLoss,CIoULoss)orTFTRAIN05(v1+v2,optimized_FocalLoss,CIoULoss)(提案手法)の精度の比較→先行研究と提案手法の比較
+
+- 現在すべきこと
+    - v1に最適化されたdefault_lossのパラメータ探索(実行中)
+    - v1+v2における射影変換行列の切り替えの対策
+
+- 問題点
+    - v1+v2における射影変換行列の切り替えをどうするか
+        - 新規のconverter.py、bbox_converter.pyを作成して、v1+v2を実行するときのみ、それらにパスを繋げる
+        - 既存のプログラムに変更を加えて、v1、v2、v1+v2の切り替えを自動で行う。

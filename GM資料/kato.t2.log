@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.2-190131-2.6 (utf8.sjis) (TeX Live 2019/W32TeX) (preloaded format=platex 2019.5.9)  4 NOV 2025 14:53
+This is e-pTeX, Version 3.14159265-p3.8.2-190131-2.6 (utf8.sjis) (TeX Live 2019/W32TeX) (preloaded format=platex 2019.5.9)  25 NOV 2025 00:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -223,28 +223,39 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 46.
-File: fig/RGB.png Graphic file (type bmp)
-<fig/RGB.png>
-File: fig/FIR.png Graphic file (type bmp)
-<fig/FIR.png>
+File: fig/FLIR_RGB_00002.jpg Graphic file (type bmp)
+<fig/FLIR_RGB_00002.jpg>
+File: fig/FLIR_FIR_00002.jpg Graphic file (type bmp)
+<fig/FLIR_FIR_00002.jpg>
 File: fig/domain_adaptation.png Graphic file (type bmp)
 <fig/domain_adaptation.png>
 LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <12> not available
 (Font)              Font shape `JT1/gt/m/n' tried instead on input line 70.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <12> not available
 (Font)              Font shape `JY1/gt/m/n' tried instead on input line 70.
-File: fig/図1.png Graphic file (type bmp)
-<fig/図1.png>
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 81.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 81.
  [1
 
-] [2] (./kato.t2.aux) ) 
+]
+File: fig/v1_score_histogram.png Graphic file (type bmp)
+<fig/v1_score_histogram.png>
+File: fig/v2_score_histogram.png Graphic file (type bmp)
+<fig/v2_score_histogram.png>
+ [2] (./kato.t2.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
- 3833 strings out of 493223
- 57539 string characters out of 6147485
- 136005 words of memory out of 5000000
- 7830 multiletter control sequences out of 15000+600000
+ 3840 strings out of 493223
+ 57786 string characters out of 6147485
+ 138999 words of memory out of 5000000
+ 7835 multiletter control sequences out of 15000+600000
  9647 words of font info for 39 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
- 42i,6n,40p,337b,399s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,10n,40p,337b,399s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on kato.t2.dvi (2 pages, 5456 bytes).
+Output written on kato.t2.dvi (2 pages, 7572 bytes).

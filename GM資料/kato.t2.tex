@@ -107,9 +107,13 @@
 	\end{table}
 	\subsection{損失関数の変更}
 	\begin{itemize}
-		\item 従来手法ではクラス、オブジェクトに対してBCELossが使用されていた、bboxにはIoULossが使用されていた。
+		\item 従来手法ではクラス、オブジェクトに対してBCELossが使用されていた、bboxにはIoULossが使用されていた。(YOLOXのデフォルトの損失関数)
 		\item personのデータ数が少ない、また車と比べて検出精度が低いことからクラス不均衡に対して効果的に作用するFocalLossに変更。
 		\item bboxはCIoULossに変更した。
+	\end{itemize}
+	\subsection{損失関数の最適化}
+	\begin{itemize}
+		\item Optunaを使用してYOLOXのデフォルトの損失関数と、提案手法における損失関数(FocalLossとCIoULoss)を各データセットに合わせての最適化を行った。
 	\end{itemize}
 	\section{前回のLTからの進捗}
 		\begin{itemize}

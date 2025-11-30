@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.2-190131-2.6 (utf8.sjis) (TeX Live 2019/W32TeX) (preloaded format=platex 2019.5.9)  27 NOV 2025 00:46
+This is e-pTeX, Version 3.14159265-p3.8.2-190131-2.6 (utf8.sjis) (TeX Live 2019/W32TeX) (preloaded format=platex 2019.5.9)  1 DEC 2025 07:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -233,29 +233,35 @@ LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <12> not available
 (Font)              Font shape `JT1/gt/m/n' tried instead on input line 70.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <12> not available
 (Font)              Font shape `JY1/gt/m/n' tried instead on input line 70.
+File: fig/bbox_score_histgram_v1.png Graphic file (type bmp)
+<fig/bbox_score_histgram_v1.png>
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 81.
+(Font)              <7> on input line 84.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 81.
- [1
+(Font)              <5> on input line 84.
+File: fig/bbox_score_histgram_v2.png Graphic file (type bmp)
+<fig/bbox_score_histgram_v2.png>
+File: fig/bbox_score_histgram_v1+v2.png Graphic file (type bmp)
+<fig/bbox_score_histgram_v1+v2.png>
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[1
 
 ]
-File: fig/v1_score_histogram.png Graphic file (type bmp)
-<fig/v1_score_histogram.png>
-File: fig/v2_score_histogram.png Graphic file (type bmp)
-<fig/v2_score_histogram.png>
- [2] (./kato.t2.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <10> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 163.
+LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <10> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 163.
+ [2] [3] [4] (./kato.t2.aux) ) 
 Here is how much of TeX's memory you used:
- 3840 strings out of 493223
- 57786 string characters out of 6147485
- 138999 words of memory out of 5000000
- 7835 multiletter control sequences out of 15000+600000
- 9647 words of font info for 39 fonts, out of 8000000 for 9000
+ 3856 strings out of 493223
+ 58040 string characters out of 6147485
+ 146023 words of memory out of 5000000
+ 7849 multiletter control sequences out of 15000+600000
+ 9955 words of font info for 40 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
- 42i,10n,40p,337b,399s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,10n,40p,421b,399s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on kato.t2.dvi (2 pages, 7960 bytes).
+Output written on kato.t2.dvi (4 pages, 21320 bytes).

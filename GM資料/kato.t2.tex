@@ -71,16 +71,35 @@
 	\begin{itemize}
 		\item FLIR\_ADAS\_v1に加え新たなデータセットとしてFLIR\_ADAS\_v2とそれらを合わせたFLIR\_ADAS\_v1+v2を作成した
 		\item v2では解像度・視野の補正、アノテーションの変換を行っているので、v1から画像の枚数は減ってしまったが、信頼性の高いデータが含まれている。結果として、v2はscoreのグラフが右に移動している。(図4、図5) 
+		\item また、v1+v2ではデータ数が増加しているので、全体的にv1よりscoreのグラフが右に移動している。(図6)
 		\item v1とv2では含まれるcarとpersonのアノテーションの数やそれぞれの大きさの個数が異なるので、学習や検出結果で異なる特性を持つ。
 		\item v1+v2では画像のサイズが異なることから射影変換行列の切り替えが必要となる。実質現在はv1のみがデータとして有意にはたらいている。
 	\end{itemize}
+	\begin{figure}[H]
+		\centering
+		\begin{minipage}[H]{0.3\columnwidth}
+			\centering
+			\includegraphics[height=4cm]{fig/bbox_score_histgram_v1.png}
+			\caption{v1のアノテーションの各スコア}			
+		\end{minipage}
+		\begin{minipage}[H]{0.3\columnwidth}
+			\centering
+			\includegraphics[height=4cm]{fig/bbox_score_histgram_v2.png}
+			\caption{v2のアノテーションの各スコア}			
+		\end{minipage}
+		\begin{minipage}[H]{0.3\columnwidth}
+			\centering
+			\includegraphics[height=4cm]{fig/bbox_score_histgram_v1+v2.png}
+			\caption{v1+v2のアノテーションの各スコア}			
+		\end{minipage}
+	\end{figure}
 	\begin{table}[h]
 		\centering
 		\begin{minipage}{0.48\linewidth}
 			\centering
-			\begin{tabular}{c|rrrr}
+			\begin{tabular}{|c|r|r|r|r|}
 				\hline
-				category\_id & Small & Medium & Large & Total \\
+				category & small & medium & large & total \\
 				\hline
 				person & 1762 & 2784 & 363 & 4909 \\
 				car & 5611 & 6425 & 1417 & 13453 \\
@@ -92,9 +111,9 @@
 		\end{minipage}
 		\begin{minipage}{0.48\linewidth}
 			\centering
-			\begin{tabular}{c|rrrr}
+			\begin{tabular}{|c|r|r|r|r|}
 				\hline
-				category\_id & Small & Medium & Large & Total \\
+				category & small & medium & large & total \\
 				\hline
 				person & 452 & 551 & 23 & 1026 \\
 				car & 951 & 1121 & 350 & 2422 \\
@@ -105,44 +124,150 @@
 			\caption{v2(sam2整形後のannotationの数)}
 		\end{minipage}
 	\end{table}
+	\begin{table}[ht]
+		\centering
+		\begin{tabular}{|c|r|r|r|r|}
+			\hline
+			version & カテゴリ & 平均 & 数 & 標準偏差 \\
+			\hline
+			v1 & person & 0.745 & 4,909 & 0.110 \\
+				& car & 0.748 & 13,453 & 0.128 \\
+			\hline
+			v2 & person & 0.699 & 1,026 & 0.105 \\
+				& car & 0.770 & 2,422 & 0.127 \\
+			\hline
+		\end{tabular}
+		\caption{v1、v2の各カテゴリごとのアノテーションスコアの平均、数、標準偏差}
+	\end{table}
 	\subsection{損失関数の変更}
 	\begin{itemize}
 		\item 従来手法ではクラス、オブジェクトに対してBCELossが使用されていた、bboxにはIoULossが使用されていた。(YOLOXのデフォルトの損失関数)
-		\item personのデータ数が少ない、また車と比べて検出精度が低いことからクラス不均衡に対して効果的に作用するFocalLossに変更。
-		\item bboxはCIoULossに変更した。
+		\item personのデータ数が少ない、また車と比べて検出精度が低いことからクラス不均衡に対して効果的に作用するFocalLossに変更、bboxはCIoULossに変更した。
 	\end{itemize}
 	\subsection{損失関数の最適化}
 	\begin{itemize}
 		\item Optunaを使用してYOLOXのデフォルトの損失関数と、提案手法における損失関数(FocalLossとCIoULoss)を各データセットに合わせての最適化を行った。
 	\end{itemize}
 	\section{前回のLTからの進捗}
+		\subsection{データセットについて}
 		\begin{itemize}
-			\item v1からv2へのデータセットの更新という形ではなく、v1+v2でデータセットの拡張を図る方針に変更した。
-			\item 谷本手法(v1)では、日中に撮影されたRGBとFIRで対応する画像が4358枚存在しており、それぞれ同じファイル名で一致させることで対応付けをしている。
-			\item この形式でv2の画像も対応するRGBとFIRを同じファイル名にして対応付けを行った。
-			\item 画像データの枚数が多いのでまだ実験終わってないです。
+			\item 改めてデータセットの構造を理解した。
+			\item v1では、RGB画像とThermal画像のサイズが異なり、射影変換を行う必要があったが、v2ではRGB画像をThermal画像のサイズにリサイズしている。その際に作成されるpair.jsonにはRGB画像とThermal画像のペア情報とリサイズ後に合わせたbbox情報も含まれている。なので、v2ではこれ以上緻密な射影変換を行う必要がない。
 		\end{itemize}
+		\subsection{損失関数の最適化について}
+		\begin{itemize}
+			\item Optunaを使用してYOLOXのデフォルトの損失関数と、提案手法における損失関数(FocalLossとCIoULoss)を各データセットに合わせての最適化を行った。v1、v2、v1+v2それぞれで最適なハイパーパラメータが異なることがわかった。これは各データセットでアノテーションの数や大きさの分布が異なることが影響していると考えられる。
+			\item 各パラメータの比較一覧を作成した。
+		\end{itemize}
+		\subsection{各実験環境の結果の比較について}
+			\subsubsection{チューニングによる検出結果への影響}
+			\begin{table}[H]
+				\centering
+					\begin{minipage}{0.7\linewidth}
+						\centering
+						\begin{tabular}{|c|r|r|r|r|r|r|}
+							\hline
+							category & mAP & mAP\_50 & mAP\_70 & mAP\_s & mAP\_m & mAP\_l\\
+							\hline
+							person & 0.036 & 0.135 & 0.008 & 0.034 & 0.100 & 0.172 \\
+							car & 0.274 & 0.552 & 0.245 & 0.121 & 0.534 & 0.721 \\
+							\hline
+						\end{tabular}
+						\caption{v1(提案損失・チューニング前)のv1における検出結果}
+					\end{minipage}
+					\begin{minipage}{0.7\linewidth}
+						\centering
+						\begin{tabular}{|c|r|r|r|r|r|r|}
+							\hline
+							category & mAP & mAP\_50 & mAP\_70 & mAP\_s & mAP\_m & mAP\_l\\
+							\hline
+							person & 0.077 & 0.247 & 0.026 & 0.066 & 0.168 & 0.285 \\
+							car & 0.359 & 0.672 & 0.347 & 0.226 & 0.513 & 0.774 \\
+							\hline
+						\end{tabular}
+						\caption{v1(提案損失・チューニング後)のv1における検出結果}
+					\end{minipage}
+			\end{table}
+			\begin{itemize}
+				\item v1データセットにおいて、損失関数のチューニングを行うことで、全体的にmAPが向上した。 特にpersonクラスにおいて顕著な改善が見られた。 これはFocalLossがクラス不均衡に対して効果的に作用したためと考えられる。carに関してはmAP\_mが低下している。
+			\end{itemize}
+			\subsubsection{損失関数の違いによる検出結果への影響}
+			\begin{table}[H]
+				\centering
+					\begin{minipage}{0.7\linewidth}
+						\centering
+						\begin{tabular}{|c|r|r|r|r|r|r|}
+							\hline
+							category & mAP & mAP\_50 & mAP\_70 & mAP\_s & mAP\_m & mAP\_l\\
+							\hline
+							person & 0.04 & 0.149 & 0.007 & 0.038 & 0.125 & 0.174 \\
+							car & 0.32 & 0.61 & 0.292 & 0.134 & 0.56 & 0.778 \\
+							\hline
+						\end{tabular}
+						\caption{v1(デフォルト損失・チューニング後)のv1における検出結果}
+					\end{minipage}
+					\begin{minipage}{0.7\linewidth}
+						\centering
+						\begin{tabular}{|c|r|r|r|r|r|r|}
+							\hline
+							category & mAP & mAP\_50 & mAP\_70 & mAP\_s & mAP\_m & mAP\_l\\
+							\hline
+							person & 0.077 & 0.247 & 0.026 & 0.066 & 0.168 & 0.285 \\
+							car & 0.359 & 0.672 & 0.347 & 0.226 & 0.513 & 0.774 \\
+							\hline
+						\end{tabular}
+						\caption{v1(提案損失・チューニング後)のv1における検出結果}
+					\end{minipage}
+			\end{table}
+			\begin{itemize}
+				\item v1データセットにおいて、提案損失関数を用いた場合、デフォルト損失関数と比較して全体的にmAPが向上した。 特にpersonクラスにおいて顕著な改善が見られた。 これはFocalLossがクラス不均衡に対して効果的に作用したためと考えられる。
+				\item ただ、carに関してはmAP\_m、mAP\_lが低下している。これはv1データセットにおいてcarの中でもmediumが多かったので、FocalLossの効果が限定的であった可能性がある。
+			\end{itemize}
+			\subsubsection{データセットの違いによる検出結果への影響}
+			\begin{table}[H]
+				\centering
+					\begin{minipage}{0.7\linewidth}
+						\centering
+						\begin{tabular}{|c|r|r|r|r|r|r|}
+							\hline
+							category & mAP & mAP\_50 & mAP\_70 & mAP\_s & mAP\_m & mAP\_l\\
+							\hline
+							person & 0.077 & 0.247 & 0.026 & 0.066 & 0.168 & 0.285 \\
+							car & 0.359 & 0.672 & 0.347 & 0.226 & 0.513 & 0.774 \\
+							\hline
+						\end{tabular}
+						\caption{v1(提案損失・チューニング後)のv1における検出結果}
+					\end{minipage}
+					\begin{minipage}{0.7\linewidth}
+						\centering
+						\begin{tabular}{|c|r|r|r|r|r|r|}
+							\hline
+							category & mAP & mAP\_50 & mAP\_70 & mAP\_s & mAP\_m & mAP\_l\\
+							\hline
+							person & 0.076 & 0.234 & 0.035 & 0.066 & 0.222 & 0.112 \\
+							car & 0.404 & 0.753 & 0.374 & 0.291 & 0.542 & 0.76 \\
+							\hline
+						\end{tabular}
+						\caption{v2(提案損失・チューニング後)のv1における検出結果}
+					\end{minipage}
+			\end{table}
+			\begin{itemize}
+				\item 上記の比較から分かることとしては、v2で学習したモデルではpersonのlargeの検出精度が低下してしまう。2.1の表で示した通り、v2データセットではlargeのpersonのアノテーション数が非常に少ないため、学習が十分に行われなかった可能性がある。person\_largeの割合としてv1は約7.4\%、v2は約2.2\%である。
+				\item 一方でcarに関しては全体的にmAPが向上している。これについては同じく2.1のcarのアノテーションスコアの平均がv1から上がっていることが検出精度の向上に寄与していると考える。
+			\end{itemize}
 	\section{今後の課題\&スケジュール}
 		\begin{itemize}
-			\item v1+v2の精度が確認でき次第、v1,v2の精度との比較を行う。
-			\item 損失関数に関する理解を深め、より良い検出精度を目指す。できれば独自の計算で損失関数を作成したい。
+			\item v1+v2用損失関数のチューニングが終了次第、結果の比較を行う。
 		\end{itemize}
 
 \begin{thebibliography}{10}
+	\bibitem{priorwork}谷本 樹希「セグメンテーションによる疑似ラベル補正を用いたドメイン適応型遠赤外線物体検出」 2024年修士論文
 	\bibitem{FocalLoss}Tsung-Yi Lin, Priya Goyal, Ross Girshick, Kaiming He, Piotr Dollár Focal Loss for Dense Object Detection (7 Feb 2018)
-	\bibitem{learning_rate}Zheng Ge,Songtao Liu,Feng Wang,Zeming Li,Jian Sun YOLOX: Exceeding YOLO Series in 2021 (6 Aug 2021)
+	\bibitem{CIoULoss}Zhaohui Zheng, Ping Wang, Wei Liu, Jingdong Wang, Junjie Yan, and Dong Chen Distance-IoU Loss: Faster and Better Learning for Bounding Box Regression (6 Apr 2020)
+	\bibitem{YOLOX}Ge Z, Liu S, Wang F, et al. YOLOX: Exceeding YOLO Series in 2021[C]//Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2021: 8370-8379.
+	\bibitem{optuna}Takuya Akiba, Shotaro Sano, Takeru Yanase, Toshihiko Ohta, Masanori Koyama Optuna: A Next-generation Hyperparameter Optimization Framework (20 Feb 2019)
+	\bibitem{FLIR}FLIR ADAS and Thermal Dataset. https://www.flir.com/oem/adas/adas-dataset-form/(accessed: 2025-11-22)
+	\bibitem{SAM2} Nikhila Ravi, Valentin Gabeur, Yuan-Ting Hu, Ronghang Hu, Chaitanya Ryali, Tengyu Ma, Haitham Khedr, Roman Rädle, Chloe Rolland, Laura Gustafson, Eric Mintun, Junting Pan, Kalyan Vasudev Alwala, Nicolas Carion, Chao-Yuan Wu, Ross Girshick, Piotr Dollár, and Christoph Feichtenhofer. SAM 2: Segment Anything in Images and Videos. arXiv preprint arXiv:2408.00714, 2024.
+	\bibitem{MMDetection} K. Chen, J. Wang, J. Pang, Y. Cao, Y. Xiong, X. Li, S. Sun, W. Feng,Z. Liu, J. Xu, Z. Zhang, D. Cheng, C. Zhu, T. Cheng, Q. Zhao, B. Li, X.Lu, R. Zhu, Y. Wu, J. Dai, J. Wang, J. Shi, W. Ouyang, C.C. Loy, and D.Lin, “MMDetection: Open MMLab detection toolbox and benchmark,” arXivpreprint, vol.arXiv:1906.07155, June 2019.
 \end{thebibliography}
-	\begin{figure}[ht]
-		\centering
-		\begin{minipage}[b]{0.4\columnwidth}
-			\centering
-			\includegraphics[height=5cm]{fig/v1_score_histogram.png}
-			\caption{v1のアノテーションの各スコア}			
-		\end{minipage}
-		\begin{minipage}[b]{0.4\columnwidth}
-			\centering
-			\includegraphics[height=5cm]{fig/v2_score_histogram.png}
-			\caption{v2のアノテーションの各スコア}			
-		\end{minipage}
-	\end{figure}
 \end{document}

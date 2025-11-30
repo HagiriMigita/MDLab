@@ -1,14 +1,15 @@
 # Fdb version 3
-["dvipdf"] 1764171965 "kato.t2.dvi" "kato.t2.pdf" "kato.t2" 1764171966
-  "kato.t2.dvi" 1764171965 7960 825d88d47e1ac155b0d10e604127d2ff "latex"
+["dvipdf"] 1764541809 "kato.t2.dvi" "kato.t2.pdf" "kato.t2" 1764541810
+  "kato.t2.dvi" 1764541809 21320 684008a370c47dbd84de1066e80734a4 "latex"
   (generated)
   "kato.t2.pdf"
-["latex"] 1764171963 "kato.t2.tex" "kato.t2.dvi" "kato.t2" 1764171966
+["latex"] 1764541807 "kato.t2.tex" "kato.t2.dvi" "kato.t2" 1764541810
   "c:/texlive/2019/texmf-dist/fonts/map/fontname/texfonts.map" 1557392318 3332 103109f5612ad95229751940c61aada0 ""
   "c:/texlive/2019/texmf-dist/fonts/tfm/ptex-fonts/standard/goth10.tfm" 1557393163 1196 5981e79c37b2cfd27b3612a6783cd4b6 ""
   "c:/texlive/2019/texmf-dist/fonts/tfm/ptex-fonts/standard/min10.tfm" 1557393163 1196 1be730212205a270378fba11a44765dc ""
   "c:/texlive/2019/texmf-dist/fonts/tfm/ptex-fonts/standard/tgoth10.tfm" 1557393163 856 7404843a5f798859944d7973a47821d5 ""
   "c:/texlive/2019/texmf-dist/fonts/tfm/ptex-fonts/standard/tmin10.tfm" 1557393163 856 39c171483fe1bb7d0e1368980c0c205b ""
+  "c:/texlive/2019/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1557391936 1328 c834bbb027764024c09d3d2bf908b5f0 ""
   "c:/texlive/2019/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1557391936 1324 c910af8c371558dc20f2d7822f66fe64 ""
   "c:/texlive/2019/texmf-dist/fonts/tfm/public/cm/cmr12.tfm" 1557391936 1288 655e228510b4c2a1abe905c368440826 ""
   "c:/texlive/2019/texmf-dist/tex/generic/ifxetex/ifxetex.sty" 1557392474 1458 43ab4710dc82f3edeabecd0d099626b2 ""
@@ -38,12 +39,13 @@
   "c:/texlive/2019/texmf.cnf" 1557393744 673 4ae7b2f49cee444c5343a45b5d0f169c ""
   "fig/FLIR_FIR_00002.jpg" 1597715326 139664 bee41c1bf52a18d24801b96851d1fa4b ""
   "fig/FLIR_RGB_00002.jpg" 1597715582 503026 34a7fbe401f654f8746e5dd9cc868238 ""
+  "fig/bbox_score_histgram_v1+v2.png" 1764426288 17769 f3e1501e90a4f96a54e8e944e933e5e9 ""
+  "fig/bbox_score_histgram_v1.png" 1764426064 17216 cf8ef238e7bb78708e14362607816438 ""
+  "fig/bbox_score_histgram_v2.png" 1764426204 16110 c08572a6ec36df4d94be10676ec4ee8d ""
   "fig/domain_adaptation.png" 1744970788 120831 451ef60950922813df729a75b4e4f5b2 ""
-  "fig/v1_score_histogram.png" 1763381683 35245 dd256febf952bcc65af1b327b6797bb6 ""
-  "fig/v2_score_histogram.png" 1763381689 32621 e9904ec9b360f27635910981fb9eb38a ""
-  "kato.t2.aux" 1764171965 1820 aa5560a11b23a63c2a144ce4b801bee8 "latex"
-  "kato.t2.tex" 1764171959 6841 4b8bcc6f22ca4d749e342b3f7cee0b5d ""
+  "kato.t2.aux" 1764541809 4193 4d8dec2643e553bf5db7c7b16ac1e508 "latex"
+  "kato.t2.tex" 1764541804 14486 4ee60ffa6e0fb4408b247d6cf65a0b62 ""
   (generated)
+  "kato.t2.log"
   "kato.t2.aux"
   "kato.t2.dvi"
-  "kato.t2.log"

@@ -160,6 +160,16 @@
 			\item 各パラメータの比較一覧を作成した。
 		\end{itemize}
 		\subsection{各実験環境の結果の比較について}
+			\subsection{共通の実験設定}
+				\begin{itemize}
+					\item ベースモデル:YOLOX-s
+					\item フレームワーク:MMDetection\cite{MMDetection}
+					\item 学習エポック数:300
+					\item バッチサイズ:8
+					\item クラス数:2(person, car)
+					\item 最適化手法:SGD
+					\item 評価指標:mAP(0.5:0.95)、mAP\_50、mAP\_70、mAP\_s、mAP\_m、mAP\_l
+				\end{itemize}
 			\subsubsection{チューニングによる検出結果への影響}
 			\begin{table}[H]
 				\centering

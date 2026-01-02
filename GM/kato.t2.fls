@@ -1,4 +1,4 @@
-PWD d:/Users/kato.t2/Documents/MDLab/GMŽ‘—¿
+PWD d:/Users/kato.t2/Documents/MDLab/GM
 INPUT c:/texlive/2019/texmf.cnf
 INPUT c:/texlive/2019/texmf-dist/web2c/texmf.cnf
 INPUT c:/texlive/2019/texmf-var/web2c/eptex/platex.fmt
@@ -73,5 +73,7 @@ INPUT extractbb -B cropbox -O fig/bbox_score_histgram_v2.png
 INPUT fig/bbox_score_histgram_v1+v2.png
 INPUT extractbb -B cropbox -O fig/bbox_score_histgram_v1+v2.png
 OUTPUT kato.t2.dvi
+INPUT fig/RGB_Thermal_GT.jpg
+INPUT extractbb -B cropbox -O fig/RGB_Thermal_GT.jpg
 INPUT c:/texlive/2019/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
 INPUT kato.t2.aux

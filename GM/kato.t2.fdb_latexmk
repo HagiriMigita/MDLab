@@ -1,9 +1,9 @@
 # Fdb version 3
-["dvipdf"] 1764582029 "kato.t2.dvi" "kato.t2.pdf" "kato.t2" 1764582029
-  "kato.t2.dvi" 1764582029 21856 4964c9ba68439aa8c9c8eadd5933e7e4 "latex"
+["dvipdf"] 1765173633 "kato.t2.dvi" "kato.t2.pdf" "kato.t2" 1765173634
+  "kato.t2.dvi" 1765173633 23376 c1a0cc8dbab86be77ed17002405ad33e "latex"
   (generated)
   "kato.t2.pdf"
-["latex"] 1764582026 "kato.t2.tex" "kato.t2.dvi" "kato.t2" 1764582029
+["latex"] 1765173631 "kato.t2.tex" "kato.t2.dvi" "kato.t2" 1765173634
   "c:/texlive/2019/texmf-dist/fonts/map/fontname/texfonts.map" 1557392318 3332 103109f5612ad95229751940c61aada0 ""
   "c:/texlive/2019/texmf-dist/fonts/tfm/ptex-fonts/standard/goth10.tfm" 1557393163 1196 5981e79c37b2cfd27b3612a6783cd4b6 ""
   "c:/texlive/2019/texmf-dist/fonts/tfm/ptex-fonts/standard/min10.tfm" 1557393163 1196 1be730212205a270378fba11a44765dc ""
@@ -39,13 +39,14 @@
   "c:/texlive/2019/texmf.cnf" 1557393744 673 4ae7b2f49cee444c5343a45b5d0f169c ""
   "fig/FLIR_FIR_00002.jpg" 1597715326 139664 bee41c1bf52a18d24801b96851d1fa4b ""
   "fig/FLIR_RGB_00002.jpg" 1597715582 503026 34a7fbe401f654f8746e5dd9cc868238 ""
+  "fig/RGB_Thermal_GT.jpg" 1764859728 91562 14d8814d7b07941c410bc59bb108bf2f ""
   "fig/bbox_score_histgram_v1+v2.png" 1764426288 17769 f3e1501e90a4f96a54e8e944e933e5e9 ""
   "fig/bbox_score_histgram_v1.png" 1764426064 17216 cf8ef238e7bb78708e14362607816438 ""
   "fig/bbox_score_histgram_v2.png" 1764426204 16110 c08572a6ec36df4d94be10676ec4ee8d ""
   "fig/domain_adaptation.png" 1744970788 120831 451ef60950922813df729a75b4e4f5b2 ""
-  "kato.t2.aux" 1764582029 4328 7e5405e8757101fa47207d9a73e85497 "latex"
-  "kato.t2.tex" 1764582022 14897 2ed46fa75a9012115c349d7b4d484ced ""
+  "kato.t2.aux" 1765173633 4334 fc5bfc11c69df679077ba409425f81b6 "latex"
+  "kato.t2.tex" 1765173628 16029 959aba19d902bb9970d9ab05d8feb811 ""
   (generated)
-  "kato.t2.dvi"
   "kato.t2.log"
+  "kato.t2.dvi"
   "kato.t2.aux"

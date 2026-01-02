@@ -70,8 +70,8 @@
 	\subsection{データセットの更新}
 	\begin{itemize}
 		\item FLIR\_ADAS\_v1に加え新たなデータセットとしてFLIR\_ADAS\_v2とそれらを合わせたFLIR\_ADAS\_v1+v2を作成した
-		\item v2では解像度・視野の補正、アノテーションの変換を行っているので、v1から画像の枚数は減ってしまったが、信頼性の高いデータが含まれている。結果として、v2はscoreのグラフが右に移動している。(図4、図5) 
-		\item また、v1+v2ではデータ数が増加しているので、全体的にv1よりscoreのグラフが右に移動している。(図6)
+		\item v2では解像度・視野の補正、アノテーションの変換を行っているので、v1から画像の枚数は減ってしまったが、信頼性の高いデータが含まれている。結果として、v2はscoreのグラフが右に移動している。(図4) 
+		\item また、v1+v2ではデータ数が増加しているので、全体的にv1よりscoreのグラフが右に移動している。(図4)
 		\item v1とv2では含まれるcarとpersonのアノテーションの数やそれぞれの大きさの個数が異なるので、学習や検出結果で異なる特性を持つ。
 		\item v1+v2では画像のサイズが異なることから射影変換行列の切り替えが必要となる。実質現在はv1のみがデータとして有意にはたらいている。
 	\end{itemize}
@@ -80,23 +80,25 @@
 		\begin{minipage}[H]{0.3\columnwidth}
 			\centering
 			\includegraphics[height=4cm]{fig/bbox_score_histgram_v1.png}
-			\caption{v1のアノテーションの各スコア}			
+			\caption*{v1}
 		\end{minipage}
 		\begin{minipage}[H]{0.3\columnwidth}
 			\centering
-			\includegraphics[height=4cm]{fig/bbox_score_histgram_v2.png}
-			\caption{v2のアノテーションの各スコア}			
+			\includegraphics[height=4cm]{fig/bbox_score_histgram_v2.png}		
+			\caption*{v2}
 		\end{minipage}
 		\begin{minipage}[H]{0.3\columnwidth}
 			\centering
-			\includegraphics[height=4cm]{fig/bbox_score_histgram_v1+v2.png}
-			\caption{v1+v2のアノテーションの各スコア}			
+			\includegraphics[height=4cm]{fig/bbox_score_histgram_v1+v2.png}	
+			\caption*{v1+v2}
 		\end{minipage}
+		\caption{モデルによる各アノテーションへの確信度の分布}
 	\end{figure}
 	\begin{table}[h]
 		\centering
 		\begin{minipage}{0.48\linewidth}
 			\centering
+			\caption{v1(sam2整形後のannotaionの数)}
 			\begin{tabular}{|c|r|r|r|r|}
 				\hline
 				category & small & medium & large & total \\
@@ -107,10 +109,10 @@
 				all & 7373 & 9209 & 1780 & 18362 \\
 				\hline
 			\end{tabular}
-			\caption{v1(sam2整形後のannotaionの数)}
 		\end{minipage}
 		\begin{minipage}{0.48\linewidth}
 			\centering
+			\caption{v2(sam2整形後のannotationの数)}
 			\begin{tabular}{|c|r|r|r|r|}
 				\hline
 				category & small & medium & large & total \\
@@ -121,11 +123,11 @@
 				all & 1403 & 1672 & 373 & 3448 \\
 				\hline
 			\end{tabular}
-			\caption{v2(sam2整形後のannotationの数)}
 		\end{minipage}
 	\end{table}
 	\begin{table}[ht]
 		\centering
+		\caption{v1、v2の各カテゴリごとのアノテーションスコアの平均、数、標準偏差}
 		\begin{tabular}{|c|r|r|r|r|}
 			\hline
 			version & カテゴリ & 平均 & 数 & 標準偏差 \\
@@ -137,7 +139,6 @@
 				& car & 0.770 & 2,422 & 0.127 \\
 			\hline
 		\end{tabular}
-		\caption{v1、v2の各カテゴリごとのアノテーションスコアの平均、数、標準偏差}
 	\end{table}
 	\subsection{損失関数の変更}
 	\begin{itemize}
@@ -153,6 +154,18 @@
 		\begin{itemize}
 			\item 改めてデータセットの構造を理解した。
 			\item v1では、RGB画像とThermal画像のサイズが異なり、射影変換を行う必要があったが、v2ではRGB画像をThermal画像のサイズにリサイズしている。その際に作成されるpair.jsonにはRGB画像とThermal画像のペア情報とリサイズ後に合わせたbbox情報も含まれている。なので、v2ではこれ以上緻密な射影変換を行う必要がない。
+			\item 実際にRGBとThermalのannotationsファイルのbbox情報を画像の上に重ねて出力したところ、わずかなズレはあるものの、おおむね一致している。
+		\end{itemize}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[height=5cm]{fig/RGB_Thermal_GT.jpg}
+			\caption{v2のRGBとThermalのGTのbboxの比較}
+		\end{figure}
+		\subsection{疑似ラベルにおけるscoreについて}
+		\begin{itemize}
+			\item 疑似ラベルのscoreについて確認したところ、事前学習モデルにより画像から検出された物体に対する確信度合いであり、IoUスコアではないことがわかった。
+			\item また疑似ラベルでは事前学習モデルによって検出された物体は、GTが想定している物体と異なるものも存在する。例えばキックボードに乗っている人をpersonとして認識する場合があった。
+			\item そのため、疑似ラベルのscoreはGTのbboxと比較したIoUスコアとは異なることに注意する必要がある。
 		\end{itemize}
 		\subsection{損失関数の最適化について}
 		\begin{itemize}
@@ -175,6 +188,7 @@
 				\centering
 					\begin{minipage}{0.7\linewidth}
 						\centering
+						\caption{v1(提案損失・チューニング前)のv1における検出結果}
 						\begin{tabular}{|c|r|r|r|r|r|r|}
 							\hline
 							category & mAP & mAP\_50 & mAP\_70 & mAP\_s & mAP\_m & mAP\_l\\
@@ -183,10 +197,10 @@
 							car & 0.274 & 0.552 & 0.245 & 0.121 & 0.534 & 0.721 \\
 							\hline
 						\end{tabular}
-						\caption{v1(提案損失・チューニング前)のv1における検出結果}
 					\end{minipage}
 					\begin{minipage}{0.7\linewidth}
 						\centering
+						\caption{v1(提案損失・チューニング後)のv1における検出結果}
 						\begin{tabular}{|c|r|r|r|r|r|r|}
 							\hline
 							category & mAP & mAP\_50 & mAP\_70 & mAP\_s & mAP\_m & mAP\_l\\
@@ -195,7 +209,6 @@
 							car & 0.359 & 0.672 & 0.347 & 0.226 & 0.513 & 0.774 \\
 							\hline
 						\end{tabular}
-						\caption{v1(提案損失・チューニング後)のv1における検出結果}
 					\end{minipage}
 			\end{table}
 			\begin{itemize}
@@ -206,6 +219,7 @@
 				\centering
 					\begin{minipage}{0.7\linewidth}
 						\centering
+						\caption{v1(デフォルト損失・チューニング後)のv1における検出結果}
 						\begin{tabular}{|c|r|r|r|r|r|r|}
 							\hline
 							category & mAP & mAP\_50 & mAP\_70 & mAP\_s & mAP\_m & mAP\_l\\
@@ -214,10 +228,10 @@
 							car & 0.32 & 0.61 & 0.292 & 0.134 & 0.56 & 0.778 \\
 							\hline
 						\end{tabular}
-						\caption{v1(デフォルト損失・チューニング後)のv1における検出結果}
 					\end{minipage}
 					\begin{minipage}{0.7\linewidth}
 						\centering
+						\caption{v1(提案損失・チューニング後)のv1における検出結果}
 						\begin{tabular}{|c|r|r|r|r|r|r|}
 							\hline
 							category & mAP & mAP\_50 & mAP\_70 & mAP\_s & mAP\_m & mAP\_l\\
@@ -226,7 +240,6 @@
 							car & 0.359 & 0.672 & 0.347 & 0.226 & 0.513 & 0.774 \\
 							\hline
 						\end{tabular}
-						\caption{v1(提案損失・チューニング後)のv1における検出結果}
 					\end{minipage}
 			\end{table}
 			\begin{itemize}
@@ -238,6 +251,7 @@
 				\centering
 					\begin{minipage}{0.7\linewidth}
 						\centering
+						\caption{v1(提案損失・チューニング後)のv1における検出結果}
 						\begin{tabular}{|c|r|r|r|r|r|r|}
 							\hline
 							category & mAP & mAP\_50 & mAP\_70 & mAP\_s & mAP\_m & mAP\_l\\
@@ -246,10 +260,10 @@
 							car & 0.359 & 0.672 & 0.347 & 0.226 & 0.513 & 0.774 \\
 							\hline
 						\end{tabular}
-						\caption{v1(提案損失・チューニング後)のv1における検出結果}
 					\end{minipage}
 					\begin{minipage}{0.7\linewidth}
 						\centering
+						\caption{v2(提案損失・チューニング後)のv1における検出結果}
 						\begin{tabular}{|c|r|r|r|r|r|r|}
 							\hline
 							category & mAP & mAP\_50 & mAP\_70 & mAP\_s & mAP\_m & mAP\_l\\
@@ -258,7 +272,6 @@
 							car & 0.404 & 0.753 & 0.374 & 0.291 & 0.542 & 0.76 \\
 							\hline
 						\end{tabular}
-						\caption{v2(提案損失・チューニング後)のv1における検出結果}
 					\end{minipage}
 			\end{table}
 			\begin{itemize}
@@ -267,7 +280,7 @@
 			\end{itemize}
 	\section{今後の課題\&スケジュール}
 		\begin{itemize}
-			\item v1+v2用損失関数のチューニングが終了次第、結果の比較を行う。
+			\item 現在、v1とv2は全てのデータセットにおいてのテストデータを出している。v1+v2用損失関数のチューニングが終了次第、結果の比較を行う。
 		\end{itemize}
 
 \begin{thebibliography}{10}

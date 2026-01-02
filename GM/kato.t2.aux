@@ -5,10 +5,7 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces ドメイン適応の流れ\relax }}{1}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {2}これまでの研究のまとめ}{1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1}データセットの更新}{1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces v1のアノテーションの各スコア\relax }}{1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces v2のアノテーションの各スコア\relax }}{1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces v1+v2のアノテーションの各スコア\relax }}{1}\protected@file@percent }
-\citation{MMDetection}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces モデルによる各アノテーションへの確信度の分布\relax }}{1}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces v1(sam2整形後のannotaionの数)\relax }}{2}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces v2(sam2整形後のannotationの数)\relax }}{2}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces v1、v2の各カテゴリごとのアノテーションスコアの平均、数、標準偏差\relax }}{2}\protected@file@percent }
@@ -16,24 +13,27 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3}損失関数の最適化}{2}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {3}前回のLTからの進捗}{2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}データセットについて}{2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}損失関数の最適化について}{2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}各実験環境の結果の比較について}{2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}共通の実験設定}{2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.1}チューニングによる検出結果への影響}{3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces v2のRGBとThermalのGTのbboxの比較\relax }}{2}\protected@file@percent }
+\citation{MMDetection}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}疑似ラベルにおけるscoreについて}{3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}損失関数の最適化について}{3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}各実験環境の結果の比較について}{3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}共通の実験設定}{3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.1}チューニングによる検出結果への影響}{3}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces v1(提案損失・チューニング前)のv1における検出結果\relax }}{3}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces v1(提案損失・チューニング後)のv1における検出結果\relax }}{3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.2}損失関数の違いによる検出結果への影響}{3}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces v1(デフォルト損失・チューニング後)のv1における検出結果\relax }}{3}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces v1(提案損失・チューニング後)のv1における検出結果\relax }}{3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.3}データセットの違いによる検出結果への影響}{3}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces v1(提案損失・チューニング後)のv1における検出結果\relax }}{3}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces v2(提案損失・チューニング後)のv1における検出結果\relax }}{3}\protected@file@percent }
 \bibcite{priorwork}{1}
 \bibcite{FocalLoss}{2}
 \bibcite{CIoULoss}{3}
 \bibcite{YOLOX}{4}
 \bibcite{optuna}{5}
 \bibcite{FLIR}{6}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.2}損失関数の違いによる検出結果への影響}{4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces v1(デフォルト損失・チューニング後)のv1における検出結果\relax }}{4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces v1(提案損失・チューニング後)のv1における検出結果\relax }}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.3}データセットの違いによる検出結果への影響}{4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces v1(提案損失・チューニング後)のv1における検出結果\relax }}{4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces v2(提案損失・チューニング後)のv1における検出結果\relax }}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}今後の課題\&スケジュール}{4}\protected@file@percent }
 \bibcite{SAM2}{7}
 \bibcite{MMDetection}{8}
-\@writefile{toc}{\contentsline {section}{\numberline {4}今後の課題\&スケジュール}{4}\protected@file@percent }

@@ -1020,6 +1020,8 @@ score_to_set: 0.5000089406967163
     - v1のtestとv2のtrainで、約20枚ほど完全一致の画像が存在した。
 
 - FLIR_ADAS_v1
+    - FIR_train = 8,862枚
+    - FIR_val = 1,366枚
     - daytime_RGB_train = 4,358枚
     - daytime_FIR_train = 4,358枚
     - daytime_FIR_val = 755枚

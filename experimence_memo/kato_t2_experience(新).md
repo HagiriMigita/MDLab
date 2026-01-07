@@ -1025,8 +1025,14 @@ score_to_set: 0.5000089406967163
     - daytime_FIR_val = 755枚
     - FIR_test = 4,224枚
 
-- FLIR_ADAS_v2
+- FLIR_ADAS_v2(前処理前)
+    - RGB_train = 10,727枚
+    - FIR_train = 11,465枚
+    - FIR_val = 5,930枚
+    - FIR_test = 3,748枚
+
+- FLIR_ADAS_v2(前処理後)
     - daytime_RGB_train = 645枚
     - daytime_FIR_train = 645枚
-    - daytime_FIR_val = 116枚
+    - FIR_val = 116枚
     - FIR_test = 3,748枚
